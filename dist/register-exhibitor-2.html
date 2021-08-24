@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="tailwind.css">
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <style>
+    [x-cloak] {
+      display: none;
+    }
+
+    .svg-icon {
+      width: 1em;
+      height: 1em;
+    }
+
+    .svg-icon path,
+    .svg-icon polygon,
+    .svg-icon rect {
+      fill: #333;
+    }
+
+    .svg-icon circle {
+      stroke: #4691f6;
+      stroke-width: 1;
+    }
+  </style>
+  <title>Register | Exhibitor</title>
+</head>
+
+<body class="min-h-screen min-w-screen bg-gradient-to-br from-blue-600 to-purple-600">
+  <div class="sm:mx-auto sm:w-full sm:max-w-4xl py-4 md:py-10 2xl:py-20 px-4">
+    <div class="bg-white py-8 px-6 shadow-lg rounded-lg sm:px-10">
+      <div class="flex flex-col items-center space-y-0.5 mb-10">
+        <!-- <img style="width:80px" class="object-contain w-10 h-10" src="assets/ptpi.png" alt="logo ptpi"> -->
+        <a href="index.html" class="text-2xl font-bold text-yellow-500">HEW 2021</a>
+        <h2 class="text-4xl font-bold">Register as Exhibitor</h2>
+      </div>
+      <form action="#" method="POST">
+
+        <!-- 2 column grid for from input -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 mb-6">
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">
+              Email address
+            </label>
+            <div class="mt-1">
+              <input id="email" name="email" type="email"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <div class="mt-1">
+              <input id="password" name="password" type="password"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+          </div>
+
+          <!-- Mobile (Whatsapp) -->
+          <div>
+            <label for="mobile" class="block text-sm font-medium text-gray-700">
+              Mobile (WhatsApp)
+            </label>
+            <div class="mt-1">
+              <input id="mobile" name="mobile"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+          </div>
+
+          <!-- Full Name (with title) -->
+          <div>
+            <label for="fullname" class="block text-sm font-medium text-gray-700">
+              Full Name (with title)
+            </label>
+            <div class="mt-1">
+              <input id="fullname" name="fullname"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+          </div>
+
+          <!-- Job Function -->
+          <div>
+            <label for="job" class="block text-sm font-medium text-gray-700">
+              Job Function
+            </label>
+            <div class="mt-1">
+              <select id="job" name="job"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Director">Director</option>
+                <option value="Architect">Architect</option>
+                <option value="Doctor">Doctor</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Company Name -->
+          <div>
+            <label for="company-name" class="block text-sm font-medium text-gray-700">
+              Company Name
+            </label>
+            <div class="mt-1">
+              <input id="company-name" name="company-name"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+          </div>
+
+          <!-- Company Website -->
+          <div>
+            <label for="company-website" class="block text-sm font-medium text-gray-700">
+              Company Website
+            </label>
+            <div class="mt-1">
+              <input id="company-website" name="company-website"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+          </div>
+
+          <!-- Country -->
+          <div>
+            <label for="country" class="block text-sm font-medium text-gray-700">
+              Country
+            </label>
+            <div class="mt-1">
+              <select id="country" name="country"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Indonesia">Indonesia</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Singapore">Singapore</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Province -->
+          <div>
+            <label for="province" class="block text-sm font-medium text-gray-700">
+              Province
+            </label>
+            <div class="mt-1">
+              <select id="province" name="province"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Aceh">Aceh</option>
+                <option value="Sumatera Utara">Sumatera Utara</option>
+                <option value="Sumatera Barat">Sumatera Barat</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Nature of Business -->
+          <div>
+            <label for="nature-of-business" class="block text-sm font-medium text-gray-700">
+              Nature of Business
+            </label>
+            <div class="mt-1">
+              <select id="nature-of-business" name="nature-of-business"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Hospital Building">Hospital Building</option>
+                <option value="Hospital Mechanic">Hospital Mechanic</option>
+                <option value="Hospital Electric">Hospital Electric</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Business Sector -->
+          <div>
+            <label for="business-sector" class="block text-sm font-medium text-gray-700">
+              What sectors best describes your products or services?
+            </label>
+            <div class="mt-1">
+              <select id="business-sector" name="business-sector"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="AC">AC</option>
+                <option value="Architecture">Architecture</option>
+                <option value="Artificial Intelligence">Artificial Intelligence</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Space in Website -->
+          <div>
+            <label for="space-in-website" class="block text-sm font-medium text-gray-700">
+              Please reserve space for us in Website
+            </label>
+            <div class="mt-1">
+              <select id="space-in-website" name="space-in-website"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Logo">Logo</option>
+                <option value="Running Text">Running Text</option>
+                <option value="News">News</option>
+                <option value="Video Advertisement">Video Advertisement</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Space in Mobile Apps -->
+          <div>
+            <label for="space-in-website" class="block text-sm font-medium text-gray-700">
+              Please reserve space for us in Mobile
+            </label>
+            <div class="mt-1">
+              <select id="space-in-website" name="space-in-website"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Logo">Logo</option>
+                <option value="Running Text">Running Text</option>
+                <option value="News">News</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Space in Opening -->
+          <div>
+            <label for="space-in-opening" class="block text-sm font-medium text-gray-700">
+              Please reserve space for us in Opening
+            </label>
+            <div class="mt-1">
+              <select id="space-in-opening" name="space-in-opening"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Logo at Poster">Logo at Poster</option>
+                <option value="Logo at Zoom Background">Logo at Zoom Background</option>
+                <option value="Ad Libs at Opening by MC">Ad Libs at Opening by MC</option>
+                <option value="Advertisement for 1 Minuters">Advertisement for 1 Minuters</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Space in Serial Seminar -->
+          <div>
+            <label for="space-in-serial-seminar" class="block text-sm font-medium text-gray-700">
+              Please reserve space for us in Serial Seminar
+            </label>
+            <div class="mt-1">
+              <select id="space-in-serial-seminar" name="space-in-serial-seminar"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Logo at Poster">Logo at Poster</option>
+                <option value="Logo at Zoom Background">Logo at Zoom Background</option>
+                <option value="Ad Libs by Moderator">Ad Libs by Moderator</option>
+                <option value="Advertisement for 1 Minuters">Advertisement for 1 Minuters</option>
+                <option value="Presentation for 15 Minutes">Presentation for 15 Minutes</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Space in Product Exhibition -->
+          <div>
+            <label for="space-in-product-exhibition" class="block text-sm font-medium text-gray-700">
+              Please reserve space for us in Product Exhibition
+            </label>
+            <div class="mt-1">
+              <select id="space-in-product-exhibition" name="space-in-product-exhibition"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Basic (Website)">Basic (Website)</option>
+                <option value="Mobile Apps">Mobile Apps</option>
+                <option value="Poster">Poster</option>
+                <option value="Product Catalog">Product Catalog</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Space in Consultancy -->
+          <div>
+            <label for="space-in-concultancy" class="block text-sm font-medium text-gray-700">
+              Please reserve space for us in Consultancy
+            </label>
+            <div class="mt-1">
+              <select id="space-in-concultancy" name="space-in-concultancy"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Basic (Web Appointment and Zoom)">Basic (Web Appointment and Zoom)</option>
+                <option value="Mobile Apps">Mobile Apps</option>
+                <option value="Poster">Poster</option>
+                <option value="Product Catalog">Product Catalog</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Space in Closing Ceremony -->
+          <div>
+            <!-- <label for="space-in-ceremony" class="block text-sm font-medium text-gray-700">
+              Please reserve space for us in Closing Ceremony
+            </label>
+            <div class="mt-1">
+              <select id="space-in-ceremony" name="space-in-ceremony"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">Pilih</option>
+                <option value="Logo at Poster">Logo at Poster</option>
+                <option value="Logo at Zoom Background">Logo at Zoom Background</option>
+                <option value="Ad Libs by Moderator">Ad Libs by Moderator</option>
+                <option value="Advertisement for 1 Minuters">Advertisement for 1 Minuters</option>
+              </select>
+            </div> -->
+            <select x-cloak id="select" class="hidden">
+              <option value="Logo at Poster">Logo at Poster</option>
+              <option value="Logo at Zoom Background">Logo at Zoom Background</option>
+              <option value="Ad Libs by Moderator">Ad Libs by Moderator</option>
+              <option value="Advertisement for 1 Minuters">Advertisement for 1 Minuters</option>
+            </select>
+
+            <div>
+              <label for="space-in-ceremony" class="block text-sm font-medium text-gray-700">Please reserve space for us
+                in
+                Closing Ceremony</label>
+              <div x-data="dropdown()" x-init="loadOptions()" class="flex flex-col">
+                <input id="space-in-ceremony" name="values" type="hidden" x-bind:value="selectedValues()"
+                  class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 sm:text-sm">
+                <div class="inline-block relative">
+                  <div class="flex flex-col items-center relative">
+                    <div x-on:click="open" class="w-full">
+                      <div class="my-1 p-0.5 flex border border-gray-300 bg-white rounded">
+                        <div class="flex flex-auto flex-wrap">
+                          <template x-for="(option,index) in selected" :key="options[option].value">
+                            <div
+                              class="flex justify-center items-center m-1 font-medium py-1 px-1 rounded bg-gray-100 border">
+                              <div class="text-xs font-normal leading-none max-w-full flex-initial x-model="
+                                options[option] x-text="options[option].text"></div>
+                              <div class="flex flex-auto flex-row-reverse">
+                                <div x-on:click.stop="remove(index,option)">
+                                  <svg class="fill-current h-4 w-4 " role="button" viewBox="0 0 20 20">
+                                    <path d="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0
+                                                         c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697s1.228-0.469,1.697,0L10,8.183
+                                                         l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0s0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15
+                                                         C14.817,13.62,14.817,14.38,14.348,14.849z" />
+                                  </svg>
+
+                                </div>
+                              </div>
+                            </div>
+                          </template>
+                          <div x-show="selected.length == 0" class="flex-1">
+                            <input placeholder="Select a option"
+                              class="bg-transparent p-1 px-2 appearance-none outline-none h-full w-full text-gray-800"
+                              x-bind:value="selectedValues()">
+                          </div>
+                        </div>
+                        <div
+                          class="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200 svelte-1l8159u">
+
+                          <button type="button" x-show="isOpen() === true" x-on:click="open"
+                            class="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none">
+                            <svg version="1.1" class="fill-current h-4 w-4" viewBox="0 0 20 20">
+                              <path d="M17.418,6.109c0.272-0.268,0.709-0.268,0.979,0s0.271,0.701,0,0.969l-7.908,7.83
+              	c-0.27,0.268-0.707,0.268-0.979,0l-7.908-7.83c-0.27-0.268-0.27-0.701,0-0.969c0.271-0.268,0.709-0.268,0.979,0L10,13.25
+              	L17.418,6.109z" />
+                            </svg>
+
+                          </button>
+                          <button type="button" x-show="isOpen() === false" @click="close"
+                            class="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none">
+                            <svg class="fill-current h-4 w-4" viewBox="0 0 20 20">
+                              <path d="M2.582,13.891c-0.272,0.268-0.709,0.268-0.979,0s-0.271-0.701,0-0.969l7.908-7.83
+              	c0.27-0.268,0.707-0.268,0.979,0l7.908,7.83c0.27,0.268,0.27,0.701,0,0.969c-0.271,0.268-0.709,0.268-0.978,0L10,6.75L2.582,13.891z
+              	" />
+                            </svg>
+
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w-full px-4">
+                      <div x-show.transition.origin.top="isOpen()"
+                        class="absolute shadow top-100 bg-white z-40 w-full left-0 rounded" x-on:click.away="close">
+                        <div class="flex flex-col w-full overflow-y-auto max-h-52">
+                          <template x-for="(option,index) in options" :key="option" class="overflow-auto">
+                            <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-gray-100"
+                              @click="select(index,$event)">
+                              <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative">
+                                <div class="w-full items-center flex justify-between">
+                                  <div class="mx-2 leading-6" x-model="option" x-text="option.text"></div>
+                                  <div x-show="option.selected">
+                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                      <path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087
+              							C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087
+              							L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+                                    </svg>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </template>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Space in Addition Remarks -->
+          <div class="md:col-span-2">
+            <label for="additional-remarks" class="block text-sm font-medium text-gray-700">
+              Addition Remarks
+            </label>
+            <div class="mt-1">
+              <textarea rows="2" id="additional-remarks" name="additional-remarks"
+                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+            </div>
+          </div>
+        </div>
+
+
+        <div>
+          <button type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm font-medium text-white transition-all bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Register
+          </button>
+        </div>
+      </form>
+
+      <!-- Or -->
+      <div class="mt-6">
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white text-gray-500">
+              Or
+            </span>
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          <div>
+            <a href="register-visitor.html"
+              class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+              <span>Register as Visitor</span>
+            </a>
+          </div>
+
+          <div>
+            <a href="login.html"
+              class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+              <span>Login</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

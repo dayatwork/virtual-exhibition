@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="tailwind.css">
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 6px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  </style>
+  <title>Register | Exhibitor</title>
+</head>
+
+<body class="min-h-screen min-w-screen bg-gradient-to-br from-blue-600 to-purple-600">
+  <div class="sm:mx-auto sm:w-full sm:max-w-4xl py-4 md:py-10 2xl:py-20 px-4">
+    <div class="bg-white py-8 px-6 shadow-lg rounded-lg sm:px-10">
+      <div class="flex flex-col items-center space-y-0.5 mb-8">
+        <!-- <img style="width:80px" class="object-contain w-10 h-10" src="assets/ptpi.png" alt="logo ptpi"> -->
+        <a href="index.html" class="text-2xl font-bold text-yellow-600">HEW 2021</a>
+        <h2 class="text-4xl font-bold">Register as Exhibitor</h2>
+      </div>
+
+
+      <form action="#" method="POST">
+        <div class="mb-6">
+          <!-- Account Information -->
+          <div>
+            <div class="relative my-4">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-yellow-600"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-2 bg-white text-yellow-600">
+                  Account Information
+                </span>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+              <!-- Email -->
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">
+                  Email address
+                </label>
+                <div class="mt-1">
+                  <input id="email" name="email" type="email"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+              </div>
+
+              <!-- Mobile (Whatsapp) -->
+              <div>
+                <label for="mobile" class="block text-sm font-medium text-gray-700">
+                  Mobile (WhatsApp)
+                </label>
+                <div class="mt-1">
+                  <input id="mobile" name="mobile"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+              </div>
+
+              <!-- Full Name (with title) -->
+              <div>
+                <label for="fullname" class="block text-sm font-medium text-gray-700">
+                  Full Name (with title)
+                </label>
+                <div class="mt-1">
+                  <input id="fullname" name="fullname"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+              </div>
+
+              <!-- Job Function -->
+              <div>
+                <label for="job" class="block text-sm font-medium text-gray-700">
+                  Job Function
+                </label>
+                <div class="mt-1">
+                  <select id="job" name="job"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="">Pilih</option>
+                    <option value="Director">Director</option>
+                    <option value="Architect">Architect</option>
+                    <option value="Doctor">Doctor</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <div class="mt-1">
+                  <input id="password" name="password" type="password"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+              </div>
+
+              <!-- Confirm Password -->
+              <div>
+                <label for="confirm-password" class="block text-sm font-medium text-gray-700">
+                  Confirm Password
+                </label>
+                <div class="mt-1">
+                  <input id="confirm-password" name="confirm-password" type="password"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company Information -->
+          <div>
+            <div class="relative mt-8 mb-4">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-yellow-600"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-2 bg-white text-yellow-600">
+                  Company Information
+                </span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+              <!-- Company Name -->
+              <div>
+                <label for="company-name" class="block text-sm font-medium text-gray-700">
+                  Company Name
+                </label>
+                <div class="mt-1">
+                  <input id="company-name" name="company-name"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+              </div>
+
+              <!-- Company Website -->
+              <div>
+                <label for="company-website" class="block text-sm font-medium text-gray-700">
+                  Company Website
+                </label>
+                <div class="mt-1">
+                  <input id="company-website" name="company-website"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+              </div>
+
+              <!-- Country -->
+              <div>
+                <label for="country" class="block text-sm font-medium text-gray-700">
+                  Country
+                </label>
+                <div class="mt-1">
+                  <select id="country" name="country"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="">Pilih</option>
+                    <option value="Indonesia">Indonesia</option>
+                    <option value="Malaysia">Malaysia</option>
+                    <option value="Singapore">Singapore</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Province -->
+              <div>
+                <label for="province" class="block text-sm font-medium text-gray-700">
+                  Province
+                </label>
+                <div class="mt-1">
+                  <select id="province" name="province"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="">Pilih</option>
+                    <option value="Aceh">Aceh</option>
+                    <option value="Sumatera Utara">Sumatera Utara</option>
+                    <option value="Sumatera Barat">Sumatera Barat</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Nature of Business -->
+              <fieldset class="md:col-span-2">
+                <legend class="block text-sm font-medium text-gray-700">
+                  Nature of Business
+                </legend>
+                <div
+                  class="mt-1 grid grid-cols-2 gap-x-4 gap-y-2 text-sm border border-gray-300 p-2 rounded-md shadow-sm max-h-20 overflow-auto">
+                  <div class="flex items-center space-x-2">
+                    <input id="hospital-building"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="nature-of-business" value="Hospital Building">
+                    <label for="hospital-building">Hospital Building</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="hospital-mechanic"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="nature-of-business" value="Hospital Mechanic">
+                    <label for="hospital-mechanic">Hospital Mechanic</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="hospital-electric"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="nature-of-business" value="Hospital Electric">
+                    <label for="hospital-electric">Hospital Electric</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="hospital-environment"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="nature-of-business" value="Hospital Environment">
+                    <label for="hospital-environment">Hospital Environment</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="hospital-informatics"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="nature-of-business" value="Hospital Informatics">
+                    <label for="hospital-informatics">Hospital Informatics</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="hospital-devices"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="nature-of-business" value="Hospital Devices">
+                    <label for="hospital-devices">Hospital Devices</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Business Sector -->
+              <fieldset class="md:col-span-2">
+                <legend class="block text-sm font-medium text-gray-700">
+                  What sectors best describes your products or services?
+                </legend>
+                <div
+                  class="mt-1 grid grid-cols-2 gap-x-4 gap-y-2 text-sm border border-gray-300 p-2 rounded-md shadow-sm max-h-20 overflow-auto">
+                  <div class="flex items-center space-x-2">
+                    <input id="ac" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="business-sector" value="AC">
+                    <label for="ac">AC</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="architecture"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="business-sector" value="Architecture">
+                    <label for="architecture">Architecture</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="artificial-intelligence"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="business-sector" value="Artificial Intelligence">
+                    <label for="artificial-intelligence">Artificial Intelligence</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="battery" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="business-sector" value="Battery">
+                    <label for="battery">Battery</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="cable" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="business-sector" value="Cable">
+                    <label for="cable">Cable</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="cardio-equipment"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="business-sector" value="Cardio Equipment">
+                    <label for="cardio-equipment">Cardio Equipment</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="cath-lab-equipment"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="business-sector" value="Cath Lab Equipment">
+                    <label for="cath-lab-equipment">Cath Lab Equipment</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="cctv" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="business-sector" value="CCTV">
+                    <label for="cctv">CCTV</label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+
+          <!-- Reserve Space -->
+          <div>
+            <div class="relative mt-8 mb-4">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-yellow-600"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-2 bg-white text-yellow-600">
+                  Reserve Space
+                </span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+              <!-- Space in Website -->
+              <fieldset>
+                <legend class="block text-sm font-medium text-gray-700">
+                  Space in Website
+                </legend>
+                <div
+                  class="mt-1 space-y-2 text-sm border border-gray-300 p-2 rounded-md shadow-sm max-h-60 overflow-auto">
+                  <div class="flex items-center space-x-2">
+                    <input id="logo" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="space-in-website" value="Logo">
+                    <label for="logo">Logo</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="running-text"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-website" value="Running Text">
+                    <label for="running-text">Running Text</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="news" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="space-in-website" value="News">
+                    <label for="news">News</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="video-advertisement"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-website" value="Video Advertisement">
+                    <label for="video-advertisement">Video Advertisement</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Space in Mobile App -->
+              <fieldset>
+                <legend class="block text-sm font-medium text-gray-700">
+                  Space in Mobile App
+                </legend>
+                <div
+                  class="mt-1 space-y-2 text-sm border border-gray-300 p-2 rounded-md shadow-sm max-h-60 overflow-auto">
+                  <div class="flex items-center space-x-2">
+                    <input id="logo" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="space-in-mobile-app" value="Logo">
+                    <label for="logo">Logo</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="running-text"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-mobile-app" value="Running Text">
+                    <label for="running-text">Running Text</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="news" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="space-in-mobile-app" value="News">
+                    <label for="news">News</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Space in Opening -->
+              <fieldset>
+                <legend class="block text-sm font-medium text-gray-700">
+                  Please reserve space for us in Opening
+                </legend>
+                <div
+                  class="mt-1 space-y-2 text-sm border border-gray-300 p-2 rounded-md shadow-sm max-h-60 overflow-auto">
+                  <div class="flex items-center space-x-2">
+                    <input id="logo-at-poster"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-opening" value="Logo at Poster">
+                    <label for="logo-at-poster">Logo at Poster</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="logo-at-zoom-background"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-opening" value="Logo at Zoom Background">
+                    <label for="logo-at-zoom-background">Logo at Zoom Background</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="adlibs-at-opening-by-mc"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-opening" value="Ad Libs at Opening by MC">
+                    <label for="adlibs-at-opening-by-mc">Ad Libs at Opening by MC</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="advertisement-for-1-minute"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-opening" value="Advertisement for 1 Minute">
+                    <label for="advertisement-for-1-minute">Advertisement for 1 Minute</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Space in Serial Seminar -->
+              <fieldset>
+                <legend class="block text-sm font-medium text-gray-700">
+                  Please reserve space for us in Serial Seminar
+                </legend>
+                <div
+                  class="mt-1 space-y-2 text-sm border border-gray-300 p-2 rounded-md shadow-sm max-h-60 overflow-auto">
+                  <div class="flex items-center space-x-2">
+                    <input id="logo-at-poster"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-serial-seminar" value="Logo at Poster">
+                    <label for="logo-at-poster">Logo at Poster</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="logo-at-zoom-background"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-serial-seminar" value="Logo at Zoom Background">
+                    <label for="logo-at-zoom-background">Logo at Zoom Background</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="adlibs-at-opening-by-moderator"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-serial-seminar" value="Ad Libs by Moderator">
+                    <label for="adlibs-at-opening-by-moderator">Ad Libs by Moderator</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="advertisement-for-1-minute"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-serial-seminar" value="Advertisement for 1 Minute">
+                    <label for="advertisement-for-1-minute">Advertisement for 1 Minute</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="presentation-for-15-minutes"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-serial-seminar" value="Presentation for 15 Minutes">
+                    <label for="presentation-for-15-minutes">Presentation for 15 Minutes</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Space in Product Exhibition -->
+              <fieldset>
+                <legend class="block text-sm font-medium text-gray-700">
+                  Please reserve space for us in Product Exhibition
+                </legend>
+                <div
+                  class="mt-1 space-y-2 text-sm border border-gray-300 p-2 rounded-md shadow-sm max-h-60 overflow-auto">
+                  <div class="flex items-center space-x-2">
+                    <input id="basic" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="space-in-product-exhibition" value="Basic (Website)">
+                    <label for="basic">Basic (Website)</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="mobile-apps"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-product-exhibition" value="Mobile Apps">
+                    <label for="mobile-apps">Mobile Apps</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="poster" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="space-in-product-exhibition" value="Poster">
+                    <label for="poster">Poster</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="product-catalog"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-product-exhibition" value="Product Catalog">
+                    <label for="product-catalog">Product Catalog</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Space in Consultancy -->
+              <fieldset>
+                <legend class="block text-sm font-medium text-gray-700">
+                  Please reserve space for us in Consultancy
+                </legend>
+                <div
+                  class="mt-1 space-y-2 text-sm border border-gray-300 p-2 rounded-md shadow-sm max-h-60 overflow-auto">
+                  <div class="flex items-center space-x-2">
+                    <input id="basic" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="space-in-consultancy" value="Basic (Website Appointment and Zoom)">
+                    <label for="basic">Basic (Website Appointment and Zoom)</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="mobile-apps"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-consultancy" value="Mobile Apps">
+                    <label for="mobile-apps">Mobile Apps</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="poster" class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded"
+                      type="checkbox" name="space-in-consultancy" value="Poster">
+                    <label for="poster">Poster</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="product-catalog"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-consultancy" value="Product Catalog">
+                    <label for="product-catalog">Product Catalog</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Space in Closing Ceremony -->
+              <fieldset>
+                <legend class="block text-sm font-medium text-gray-700">
+                  Please reserve space for us in Closing Ceremony
+                </legend>
+                <div
+                  class="mt-1 space-y-2 text-sm border border-gray-300 p-2 rounded-md shadow-sm max-h-60 overflow-auto">
+                  <div class="flex items-center space-x-2">
+                    <input id="logo-at-poster"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-closing-ceremony" value="Logo at Poster">
+                    <label for="logo-at-poster">Logo at Poster</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="logo-at-zoom-background"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-closing-ceremony" value="Logo at Zoom Background">
+                    <label for="logo-at-zoom-background">Logo at Zoom Background</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="adlibs-at-opening-by-mc"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-closing-ceremony" value="Ad Libs at Opening by MC">
+                    <label for="adlibs-at-opening-by-mc">Ad Libs at Opening by MC</label>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <input id="advertisement-for-1-minute"
+                      class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-400 rounded" type="checkbox"
+                      name="space-in-closing-ceremony" value="Advertisement for 1 Minute">
+                    <label for="advertisement-for-1-minute">Advertisement for 1 Minute</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Space in Addition Remarks -->
+              <div>
+                <label for="additional-remarks" class="block text-sm font-medium text-gray-700">
+                  Addition Remarks
+                </label>
+                <div class="mt-1">
+                  <textarea rows="5" id="additional-remarks" name="additional-remarks"
+                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div>
+          <button type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm font-medium text-white transition-all bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Register
+          </button>
+        </div>
+      </form>
+
+      <!-- Or -->
+      <div class="mt-6">
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white text-gray-500">
+              Or
+            </span>
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          <div>
+            <a href="register-visitor.html"
+              class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+              <span>Register as Visitor</span>
+            </a>
+          </div>
+
+          <div>
+            <a href="login.html"
+              class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+              <span>Login</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
