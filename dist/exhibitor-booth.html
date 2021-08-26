@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="tailwind.css">
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <title>Exhibitor Booth</title>
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 20px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 20px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #666;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 relative overflow-hidden">
+  <!-- Background Virtual Booth -->
+  <img class="absolute" src="assets/bg-apple-2.png" alt="bg-apple" />
+
+  <!-- Content -->
+  <div
+    x-data="{openVideoModal: false, openProductSlideOver: false, openCompanyProfileSlideOver: false, openBookConsultationModal: false}">
+    <header class="bg-transparent sticky">
+      <nav x-data="{openProfileDropdown: false, openMobileMenu: false}"
+        class="bg-transparent px-1.5 lg:px-2 py-1.5 lg:py-2">
+        <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 bg-white rounded-t-lg lg:rounded-b-lg bg-opacity-50 shadow"
+          style="backdrop-filter: blur(20px);">
+          <div class="relative h-16 flex items-center justify-between">
+            <div class="px-2 flex items-center lg:px-0">
+              <div class="flex-shrink-0 flex items-center space-x-3">
+                <img class="block h-12 w-12" src="assets/ptpi.png" alt="Workflow">
+                <div class="hidden lg:block text-2xl font-bold text-yellow-600">HEW 2021</div>
+              </div>
+              <div class="hidden lg:block lg:ml-10">
+                <div class="flex space-x-4">
+                  <a href="dashboard-visitor.html"
+                    class="text-gray-700 hover:text-gray-900 rounded-md px-3 text-sm font-medium">
+                    Dashboard
+                  </a>
+
+                  <a href="#" class="text-gray-700 hover:text-gray-900 rounded-md px-3 text-sm font-medium">
+                    Seminar
+                  </a>
+
+                  <a href="exhibitor-hall.html" class="text-yellow-600 rounded-md px-3 text-sm font-medium">
+                    Exhibitors
+                  </a>
+
+                  <!-- <a href="#" class="text-gray-700 hover:text-gray-900 rounded-md px-3 text-sm font-medium">
+                    Booking Consultancy
+                  </a>
+
+                  <a href="#" class="text-gray-700 hover:text-gray-900 rounded-md px-3 text-sm font-medium">
+                    Certificate
+                  </a> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="flex lg:hidden">
+              <!-- Mobile menu button -->
+              <button type="button" x-on:click="openMobileMenu = !openMobileMenu"
+                class="p-2 rounded-md inline-flex items-center justify-center text-gray-800 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white"
+                aria-controls="mobile-menu" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <!-- Menu Icon -->
+                <svg x-bind:class="! openMobileMenu ? 'block' : 'hidden'" class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <!-- Close Menu Icon -->
+                <svg x-bind:class="! openMobileMenu ? 'hidden' : 'block'" class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <!-- Desktop User Dropdown -->
+            <div class="hidden lg:block lg:ml-4">
+              <div class="flex items-center">
+                <button
+                  class="flex-shrink-0 rounded-full p-1 text-white hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white">
+                  <span class="sr-only">View notifications</span>
+                  <!-- Heroicon name: outline/bell -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+                </button>
+
+                <!-- Profile dropdown -->
+                <div class="ml-3 relative flex-shrink-0">
+                  <div>
+                    <button x-on:click="openProfileDropdown = !openProfileDropdown" type="button"
+                      class="bg-[#183086] rounded-full flex text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white"
+                      id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                      <span class="sr-only">Open user menu</span>
+                      <img class="rounded-full h-8 w-8"
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        alt="">
+                    </button>
+                  </div>
+
+                  <div x-show="openProfileDropdown" x-transition:enter="transition ease-out duration-100"
+                    x-transition:enter-start="transform opacity-0 scale-95"
+                    x-transition:enter-end="transform opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-75"
+                    x-transition:leave-start="transform opacity-100 scale-100"
+                    x-transition:leave-end="transform opacity-0 scale-95" @click.away="openProfileDropdown = false"
+                    class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white opacity-75 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    style="backdrop-filter: blur(20px);" role="menu" aria-orientation="vertical"
+                    aria-labelledby="user-menu-button" tabindex="-1">
+                    <!-- Active: "bg-gray-100", Not Active: "" -->
+                    <a href="#" class="block py-2 px-4 text-sm text-gray-900 hover:text-[#203FB1] font-medium"
+                      role="menuitem" tabindex="-1" id="user-menu-item-0">
+                      Your Profile
+                    </a>
+
+                    <a href="#" class="block py-2 px-4 text-sm text-gray-900 hover:text-[#203FB1] font-medium"
+                      role="menuitem" tabindex="-1" id="user-menu-item-1">
+                      Settings
+                    </a>
+
+                    <a href="#" class="block py-2 px-4 text-sm text-gray-900 hover:text-[#203FB1] font-medium"
+                      role="menuitem" tabindex="-1" id="user-menu-item-2">
+                      Sign out
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div x-show="openMobileMenu" class="lg:hidden bg-white bg-opacity-50 shadow-md rounded-b-lg"
+          style="backdrop-filter: blur(20px);" id="mobile-menu">
+          <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="#" class="text-[#203FB1] block rounded-md py-2 px-3 text-base font-medium">
+              Dashboard
+            </a>
+
+            <a href="#" class="text-gray-900 hover:text-[#203FB1] block rounded-md py-2 px-3 text-base font-medium">
+              Seminar
+            </a>
+            <a href="exhibitor-hall.html"
+              class="text-gray-900 hover:text-[#203FB1] block rounded-md py-2 px-3 text-base font-medium">
+              Exhibitors
+            </a>
+            <!-- <a href="#" class="text-gray-900 hover:text-[#203FB1] block rounded-md py-2 px-3 text-base font-medium">
+              Booking Consultancy
+            </a>
+            <a href="#" class="text-gray-900 hover:text-[#203FB1] block rounded-md py-2 px-3 text-base font-medium">
+              Certificate
+            </a> -->
+          </div>
+          <div class="pt-4 pb-3 border-t border-white">
+            <div class="px-5 flex items-center">
+              <div class="flex-shrink-0">
+                <img class="rounded-full h-10 w-10"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt="">
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium text-gray-900">Tom Cook</div>
+                <div class="text-sm font-medium text-[#203FB1]">tom@example.com</div>
+              </div>
+              <button
+                class="ml-auto flex-shrink-0 rounded-full p-1 text-gray-900 hover:text-[#203FB1] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white">
+                <span class="sr-only">View notifications</span>
+                <!-- Heroicon name: outline/bell -->
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+              </button>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:text-[#203FB1]">
+                Your Profile
+              </a>
+
+              <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:text-[#203FB1]">
+                Settings
+              </a>
+
+              <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:text-[#203FB1]">
+                Sign out
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="relative main-area w-full max-w-7xl mx-auto">
+      <div class="mt-1">
+        <a href="exhibitor-hall.html"
+          class="bg-white bg-opacity-50 py-2 pl-2 pr-3 font-medium rounded-md text-sm inline-flex items-center space-x-1 group"
+          style="backdrop-filter: blur(10px);"><svg class="w-4 group-hover:-translate-x-1 transition" width="24"
+            height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M10.25 6.75L4.75 12L10.25 17.25" />
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M19.25 12H5" />
+          </svg>
+          <span>Exhibitor
+            List</span></a>
+      </div>
+      <!-- Start Video Modal/Dialog -->
+      <div x-show="openVideoModal" @keydown.window.escape="openVideoModal = false"
+        class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+          <!-- Overlay -->
+          <div x-show="openVideoModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+            x-description="Background overlay, show/hide based on modal state."
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="openVideoModal = false"
+            aria-hidden="true">
+          </div>
+
+
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+
+          <!-- Modal -->
+          <div x-show="openVideoModal" x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-description="Modal panel, show/hide based on modal state."
+            class="inline-block align-bottom bg-white bg-opacity-50 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full sm:p-6 -translate-y-10"
+            style="backdrop-filter: blur(20px);">
+            <div class="plyr__video-embed" id="player" style="--plyr-color-main: #F59E0B;">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/Gz8vBoEFArA"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen allow="autoplay"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Video Modal/ Dialog -->
+
+      <!-- Start Product Slide Over -->
+      <div x-show="openProductSlideOver" @keydown.window.escape="openProductSlideOver = false"
+        class="fixed inset-0 overflow-hidden z-10" aria-labelledby="slide-over-title" x-ref="dialog" aria-modal="true">
+        <div class="absolute inset-0 overflow-hidden w-full">
+
+          <!-- Overlay -->
+          <div x-show="openProductSlideOver" x-transition:enter="ease-in-out duration-500"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" x-description="Background overlay, show/hide based on slide-over state."
+            class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="openProductSlideOver = false"
+            aria-hidden="true">
+          </div>
+
+          <div class="fixed inset-y-4 right-4 pl-10 max-w-full flex">
+
+            <div x-show="openProductSlideOver"
+              x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+              x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+              x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+              x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+              class="relative w-screen max-w-4xl"
+              x-description="Slide-over panel, show/hide based on slide-over state.">
+
+              <!-- Close Button -->
+              <!-- <div x-show="openProductSlideOver" x-transition:enter="ease-in-out duration-500"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" x-description="Close button, show/hide based on slide-over state."
+                class="absolute top-0 left-0 -ml-8 pt-4 pr-2 flex sm:-ml-10 sm:pr-4">
+                <button
+                  class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                  @click="openProductSlideOver = false">
+                  <span class="sr-only">Close panel</span>
+                  <svg class="h-6 w-6" x-description="Heroicon name: outline/x" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                  </svg>
+                </button>
+              </div> -->
+
+              <div class="h-full flex flex-col py-6 bg-white bg-opacity-50 shadow-xl overflow-y-auto rounded-lg"
+                style="backdrop-filter: blur(15px);">
+                <div class="px-4 sm:px-6">
+                  <h2 class="text-2xl font-bold text-gray-900" id="slide-over-title">
+                    Our Products
+                  </h2>
+                </div>
+                <div class="mt-6 flex-1 px-4 sm:px-6">
+                  <div class="grid grid-cols-3 gap-6">
+                    <!-- Product 0 -->
+                    <div class="group relative">
+                      <div
+                        class="w-full min-h-72 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 lg:aspect-none shadow-xl">
+                        <img
+                          src="https://images.unsplash.com/photo-1625469312402-dbdc34f66425?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80"
+                          alt="Macbook Pro" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                      </div>
+                      <div class="mt-4 flex justify-between">
+                        <div>
+                          <h3 class="text-sm font-medium text-gray-900">
+                            <a href="#">
+                              <span aria-hidden="true" class="absolute inset-0"></span>
+                              Mac Pro
+                            </a>
+                          </h3>
+                          <p class="mt-1 text-sm text-gray-600">Silver</p>
+                        </div>
+                        <p class="text-sm font-medium text-gray-900">$5999</p>
+                      </div>
+                    </div>
+                    <!-- Product 1 -->
+                    <div class="group relative">
+                      <div
+                        class="w-full min-h-72 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 lg:aspect-none shadow-xl">
+                        <img
+                          src="https://images.unsplash.com/photo-1542393545-10f5cde2c810?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=701&q=80"
+                          alt="Macbook Pro" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                      </div>
+                      <div class="mt-4 flex justify-between">
+                        <div>
+                          <h3 class="text-sm font-medium text-gray-900">
+                            <a href="#">
+                              <span aria-hidden="true" class="absolute inset-0"></span>
+                              Macbook Pro 16"
+                            </a>
+                          </h3>
+                          <p class="mt-1 text-sm text-gray-600">Space Gray</p>
+                        </div>
+                        <p class="text-sm font-medium text-gray-900">$2399</p>
+                      </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="group relative">
+                      <div
+                        class="w-full min-h-72 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 lg:aspect-none shadow-xl">
+                        <img
+                          src="https://images.unsplash.com/photo-1585770536735-27993a080586?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"
+                          alt="Macbook Pro" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                      </div>
+                      <div class="mt-4 flex justify-between">
+                        <div>
+                          <h3 class="text-sm font-medium text-gray-900">
+                            <a href="#">
+                              <span aria-hidden="true" class="absolute inset-0"></span>
+                              Ipad Pro
+                            </a>
+                          </h3>
+                          <p class="mt-1 text-sm text-gray-600">Space Gray</p>
+                        </div>
+                        <p class="text-sm font-medium text-gray-900">$1199</p>
+                      </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="group relative">
+                      <div
+                        class="w-full min-h-72 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 lg:aspect-none shadow-xl">
+                        <img
+                          src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"
+                          alt="Macbook Pro" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                      </div>
+                      <div class="mt-4 flex justify-between">
+                        <div>
+                          <h3 class="text-sm font-medium text-gray-900">
+                            <a href="#">
+                              <span aria-hidden="true" class="absolute inset-0"></span>
+                              Iphone 11
+                            </a>
+                          </h3>
+                          <p class="mt-1 text-sm text-gray-600">Gold</p>
+                        </div>
+                        <p class="text-sm font-medium text-gray-900">$799</p>
+                      </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="group relative">
+                      <div
+                        class="w-full min-h-72 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 lg:aspect-none shadow-xl">
+                        <img
+                          src="https://images.unsplash.com/photo-1616353329366-b5546ca70b1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                          alt="Macbook Pro" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                      </div>
+                      <div class="mt-4 flex justify-between">
+                        <div>
+                          <h3 class="text-sm font-medium text-gray-900">
+                            <a href="#">
+                              <span aria-hidden="true" class="absolute inset-0"></span>
+                              Apple Watch 5
+                            </a>
+                          </h3>
+                          <p class="mt-1 text-sm text-gray-600">Black</p>
+                        </div>
+                        <p class="text-sm font-medium text-gray-900">$599</p>
+                      </div>
+                    </div>
+                    <!-- Product 5 -->
+                    <div class="group relative">
+                      <div
+                        class="w-full min-h-72 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 lg:aspect-none shadow-xl">
+                        <img
+                          src="https://images.unsplash.com/photo-1603680373177-e762186bdc3e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                          alt="Macbook Pro" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                      </div>
+                      <div class="mt-4 flex justify-between">
+                        <div>
+                          <h3 class="text-sm font-medium text-gray-900">
+                            <a href="#">
+                              <span aria-hidden="true" class="absolute inset-0"></span>
+                              Air Pods Pro
+                            </a>
+                          </h3>
+                          <p class="mt-1 text-sm text-gray-600">White</p>
+                        </div>
+                        <p class="text-sm font-medium text-gray-900">$299</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-6 flex justify-center">
+                    <a href="exhibitor-product.html"
+                      class="font-medium text-lg text-yellow-600 hover:text-yellow-700 inline-flex items-center space-x-1 group"><span>All
+                        Products</span>
+                      <svg class="w-6 mt-0.5 group-hover:translate-x-1 transition" width="24" height="24" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                          d="M13.75 6.75L19.25 12L13.75 17.25" />
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                          d="M19 12H4.75" />
+                      </svg></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- End Product Slide Over -->
+
+      <!-- Start Company Profile Slide Over -->
+      <div x-show="openCompanyProfileSlideOver" @keydown.window.escape="openCompanyProfileSlideOver = false"
+        class="fixed inset-0 overflow-hidden z-10" aria-labelledby="slide-over-title" x-ref="dialog" aria-modal="true">
+        <div class="absolute inset-0 overflow-hidden w-full">
+
+          <!-- Overlay -->
+          <div x-show="openCompanyProfileSlideOver" x-transition:enter="ease-in-out duration-500"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" x-description="Background overlay, show/hide based on slide-over state."
+            class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            @click="openCompanyProfileSlideOver = false" aria-hidden="true">
+          </div>
+
+          <div class="fixed inset-y-4 left-4 pr-10 max-w-full flex">
+            <div x-show="openCompanyProfileSlideOver"
+              x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+              x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+              x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+              x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
+              class="relative w-screen max-w-4xl"
+              x-description="Slide-over panel, show/hide based on slide-over state.">
+
+              <!-- Close Button -->
+              <!-- <div x-show="openCompanyProfileSlideOver" x-transition:enter="ease-in-out duration-500"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" x-description="Close button, show/hide based on slide-over state."
+                class="absolute top-0 right-0 -mr-12 pt-4 pr-2 flex sm:-ml-10 sm:pr-4">
+                <button
+                  class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                  @click="openCompanyProfileSlideOver = false">
+                  <span class="sr-only">Close panel</span>
+                  <svg class="h-6 w-6" x-description="Heroicon name: outline/x" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                  </svg>
+                </button>
+              </div> -->
+
+              <div class="h-full flex flex-col py-6 bg-white bg-opacity-50 shadow-xl overflow-y-auto rounded-lg"
+                style="backdrop-filter: blur(15px);">
+                <div class="px-4 sm:px-6">
+                  <h2 class="text-2xl font-bold text-gray-900" id="slide-over-title">
+                    About Us
+                  </h2>
+                </div>
+                <div class="mt-6 flex-1 px-4 sm:px-6">
+                  <div class="mb-6 flex justify-center">
+                    <img class="-ml-6 h-10" src="assets/apple.svg" alt="">
+                  </div>
+                  <div
+                    class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none shadow-xl mb-6">
+                    <img
+                      src="https://images.unsplash.com/photo-1536572701422-28e6051dd93f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1490&q=80"
+                      alt="Macbook Pro" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                  </div>
+
+                  <div class="px-2">
+                    <p>
+                      Apple Inc. is an American multinational technology company that specializes in consumer
+                      electronics, computer software,
+                      and online services. Apple is the world's largest technology company by revenue (totaling $274.5
+                      billion in 2020) and,
+                      since January 2021, the world's most valuable company. As of 2021, Apple is the world's
+                      fourth-largest PC vendor by unit
+                      sales,[9] and fourth-largest smartphone manufacturer.[10][11] It is one of the Big Five American
+                      information technology
+                      companies, along with Amazon, Google, Microsoft, and Facebook
+                    </p>
+                    <p>
+                      Apple was founded by Steve Jobs, Steve Wozniak, and Ronald Wayne in 1976 to develop and sell
+                      Wozniak's Apple I personal
+                      computer. It was incorporated by Jobs and Wozniak as Apple Computer, Inc. in 1977, and sales of
+                      its computers, including
+                      the Apple II, grew quickly. They went public in 1980 to instant financial success. Over the next
+                      few years, Apple
+                      shipped new computers featuring innovative graphical user interfaces, such as the original
+                      Macintosh, announced with the
+                      critically acclaimed advert "1984". However, the high price of its products and limited
+                      application library caused
+                      problems, as did power struggles between executives. In 1985, Wozniak departed Apple amicably,[15]
+                      while Jobs resigned
+                      to found NeXT, taking some Apple co-workers with him.
+                    </p>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- End Product Slide Over -->
+
+      <!-- Start Book Consultation Modal/Dialog -->
+      <div x-show="openBookConsultationModal" @keydown.window.escape="openBookConsultationModal = false"
+        class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+          <div x-show="openBookConsultationModal" x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" x-description="Background overlay, show/hide based on modal state."
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            @click="openBookConsultationModal = false" aria-hidden="true"></div>
+
+
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+
+          <div x-show="openBookConsultationModal"
+            x-transition:enter="transform transition ease-in-out duration-300 sm:duration-400"
+            x-transition:enter-start="translate-y-full opacity-0" x-transition:enter-end="translate-y-0 opacity-100"
+            x-transition:leave="transform transition ease-in-out duration-300 sm:duration-400"
+            x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-full opacity-0"
+            x-description="Modal panel, show/hide based on modal state."
+            class="inline-block align-bottom bg-white bg-opacity-50 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6"
+            style="backdrop-filter: blur(15px);">
+            <h3 class="mb-8 text-xl text-center font-bold">Booking Consultation</h3>
+            <form action="#" class="space-y-4" method="POST">
+              <!-- Email -->
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">
+                  No. WA / Telp
+                </label>
+                <div class="mt-1">
+                  <input id="email" name="email" type="email"
+                    class="appearance-none block w-full px-3 py-2 rounded-md shadow placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:ring-2 focus:ring-offset-1 focus:border-transparent bg-white bg-opacity-20">
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">
+                  Pilih Waktu
+                </label>
+                <div class="mt-1">
+                  <select id="job" name="job"
+                    class="appearance-none block w-full px-3 py-2 rounded-md shadow placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:ring-2 focus:ring-offset-1 focus:border-transparent bg-white bg-opacity-20">
+                    <option value="">Pilih</option>
+                    <option value="12.00">12.00</option>
+                    <option value="13.00">13.00</option>
+                    <option value="14.00">14.00</option>
+                    <option value="15.00">15.00</option>
+                    <option value="16.00">16.00</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mt-5 sm:mt-6">
+                <button type="button"
+                  class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:text-sm"
+                  @click="open = false">
+                  Make an Appointment
+                </button>
+              </div>
+            </form>
+            <div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <!-- End Video Modal/ Dialog -->
+
+      <!-- Open Video Button -->
+      <button @click="openVideoModal = true"
+        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-24 bg-yellow-100 p-1.5 rounded-full text-yellow-600 border-[4px] border-yellow-600 animate-pulse">
+        <svg class="w-12 h-12 pl-1" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M18.25 12L5.75 5.75V18.25L18.25 12Z" />
+        </svg>
+        <span class="sr-only">Open Video</span>
+      </button>
+
+      <!-- Open Product Button -->
+      <button @click="openProductSlideOver = true"
+        class="absolute right-0 top-1/2 -translate-x-14 bg-yellow-100 p-1.5 rounded-full text-yellow-600 border-[4px] border-yellow-600 animate-pulse">
+        <svg class="w-8 h-8" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M4.75 16L7.49619 12.5067C8.2749 11.5161 9.76453 11.4837 10.5856 12.4395L13 15.25M10.915 12.823C11.9522 11.5037 13.3973 9.63455 13.4914 9.51294C13.4947 9.50859 13.4979 9.50448 13.5013 9.50017C14.2815 8.51598 15.7663 8.48581 16.5856 9.43947L19 12.25M6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V6.75C19.25 5.64543 18.3546 4.75 17.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25Z" />
+        </svg>
+        <span class="sr-only">Open Product</span>
+      </button>
+
+      <!-- Open Company Profile Button -->
+      <button @click="openCompanyProfileSlideOver = true"
+        class="absolute left-0 top-1/2 translate-x-14 bg-yellow-100 p-1.5 rounded-full text-yellow-600 border-[4px] border-yellow-600 animate-pulse">
+        <svg class="w-8 h-8" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M7.75 19.25H16.25C17.3546 19.25 18.25 18.3546 18.25 17.25V9L14 4.75H7.75C6.64543 4.75 5.75 5.64543 5.75 6.75V17.25C5.75 18.3546 6.64543 19.25 7.75 19.25Z" />
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M18 9.25H13.75V5" />
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M9.75 15.25H14.25" />
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M9.75 12.25H14.25" />
+        </svg>
+        <span class="sr-only">Open Company Profile</span>
+      </button>
+
+      <!-- Open Book Consultation Button -->
+      <button @click="openBookConsultationModal = true"
+        class="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-28 bg-yellow-100 p-1.5 rounded-full text-yellow-600 border-[4px] border-yellow-600 animate-pulse">
+        <svg class="w-8 h-8" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M8.89286 4.75H6.06818C5.34017 4.75 4.75 5.34017 4.75 6.06818C4.75 13.3483 10.6517 19.25 17.9318 19.25C18.6598 19.25 19.25 18.6598 19.25 17.9318V15.1071L16.1429 13.0357L14.5317 14.6468C14.2519 14.9267 13.8337 15.0137 13.4821 14.8321C12.8858 14.524 11.9181 13.9452 10.9643 13.0357C9.98768 12.1045 9.41548 11.1011 9.12829 10.494C8.96734 10.1537 9.06052 9.76091 9.32669 9.49474L10.9643 7.85714L8.89286 4.75Z" />
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M14 5.02936C16.4312 5.72562 18.3396 7.65944 19 10.1056" />
+        </svg>
+        <span class="sr-only">Open Company Profile</span>
+      </button>
+
+    </main>
+  </div>
+
+  <!-- Script -->
+  <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+  <script>const player = new Plyr('#player');</script>
+</body>
+
+</html>
