@@ -9,11 +9,6 @@
   <link rel="stylesheet" href="tailwind.css">
   <title>Virtual Exhibition</title>
   <style>
-    .swiper {
-      width: 100vw;
-      height: calc(100vh - 70px);
-    }
-
     .swiper-pagination-bullet-active {
       background-color: #EEA402;
     }
@@ -203,7 +198,7 @@
           <span class="mt-4 uppercase font-medium tracking-wider text-xs md:text-sm text-center">Why Visit</span>
         </a>
         <a href="#"
-          class="z-10 bg-white flex flex-col items-center py-2 px-2 md:py-6 md:px-6 rounded-3xl shadow-2xl hover:shadow-none">
+          class="z-10 bg-[#EEA402] flex flex-col items-center py-2 px-2 md:py-6 md:px-6 rounded-3xl shadow-2xl hover:shadow-none">
           <img class="w-12 md:w-20" src="assets/icons/sponsor-partner.svg" alt="Sponsorship and Partner">
           <span class="mt-4 uppercase font-medium tracking-wider text-xs md:text-sm text-center">Sponsorship and
             Partner</span>
@@ -319,7 +314,9 @@
   <section class="max-w-7xl mx-auto md:py-20 mb-20 px-2 bg-white">
     <h3 class="text-3xl text-gray-700 text-center font-medium">Organized by</h3>
     <div class="mt-6 flex justify-center">
-      <img class="h-28 -ml-4" src="assets/kic.png" alt="Logo KIC">
+
+      <img class="block md:hidden h-28 -ml-4" src="assets/kic-small.png" alt="Logo KIC">
+      <img class="hidden md:block h-28 -ml-4" src="assets/kic.png" alt="Logo KIC">
     </div>
   </section>
 
@@ -334,7 +331,7 @@
             <div class="border border-gray-600 rounded-full w-10 h-10 flex items-center justify-center">
               <img class="w-4" src="assets/icons/address.svg" alt="Address">
             </div>
-            <span class="flex-1 text-white mt-0.5">
+            <span class="flex-1 max-w-[350px] text-sm md:text-md text-white mt-0.5">
               Gedung Wisma NH Building Lantai 1, Jl. Raya Pasar Minggu No.2B-C 2 1 2, RT.2/RW.2, Pancoran, Kec.
               Pancoran,
               Kota Jakarta
@@ -346,7 +343,7 @@
             <div class="border border-gray-600 rounded-full w-10 h-10 flex items-center justify-center">
               <img class="w-4" src="assets/icons/phone.svg" alt="Phone">
             </div>
-            <div class="flex-1 text-white mt-0.5 flex flex-col space-y-2">
+            <div class="flex-1 max-w-[350px] text-sm md:text-md text-white mt-0.5 flex flex-col space-y-2">
               <span>+62 858 9377 7283 (Adrian)</span>
               <span>+62 877 7889 9087 (Jordy)</span>
             </div>
@@ -356,7 +353,7 @@
             <div class="border border-gray-600 rounded-full w-10 h-10 flex items-center justify-center">
               <img class="w-4" src="assets/icons/email.svg" alt="Email">
             </div>
-            <span class="flex-1 text-white mt-0.5">
+            <span class="flex-1 max-w-[350px] text-sm md:text-md text-white mt-0.5">
               hospital.engineering.expo@gmail.com
             </span>
           </div>
