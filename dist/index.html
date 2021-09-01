@@ -30,8 +30,8 @@
 <body x-data="{openMobileMenu: false, openGuestModal: false}">
 
   <!-- Guest Modal -->
-  <div x-show="false" @keydown.window.escape="openGuestModal = false" class="fixed z-10 inset-0 overflow-y-auto"
-    aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+  <div x-show="openGuestModal" @keydown.window.escape="openGuestModal = false"
+    class="fixed z-60 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
       <!-- Overlay -->
@@ -51,8 +51,8 @@
         x-transition:leave="transform transition ease-in-out duration-300 sm:duration-400"
         x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-full opacity-0"
         x-description="Modal panel, show/hide based on modal state."
-        class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
-        <h3 class="mb-8 text-xl text-center font-bold">Booking Consultation</h3>
+        class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full sm:max-w-sm sm:w-full sm:p-6">
+        <h3 class="mb-8 text-xl text-center font-bold">Enter your email</h3>
         <form action="#" class="space-y-4" method="POST">
           <!-- Email -->
           <div>
@@ -223,7 +223,7 @@
 
               <!-- Visitor -->
               <div x-data="{ open: false }" class="space-y-1">
-                <button type="button"
+                <button @click="openGuestModal = true" type="button"
                   class="bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-[#00B4BF]"
                   x-state:on="Current" x-state:off="Default" aria-controls="sub-menu-1" @click="open = !open"
                   aria-expanded="false" x-bind:aria-expanded="open.toString()"
@@ -265,7 +265,7 @@
 
               <!-- Exhibitor -->
               <div x-data="{ open: false }" class="space-y-1">
-                <button type="button"
+                <button @click="openGuestModal = true" type="button"
                   class="bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-[#00B4BF]"
                   x-state:on="Current" x-state:off="Default" aria-controls="sub-menu-1" @click="open = !open"
                   aria-expanded="false" x-bind:aria-expanded="open.toString()"
