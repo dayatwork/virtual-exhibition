@@ -1894,6 +1894,14 @@ select {
   --tw-bg-opacity: 0.2;
 }
 
+.bg-opacity-30 {
+  --tw-bg-opacity: 0.3;
+}
+
+.bg-opacity-40 {
+  --tw-bg-opacity: 0.4;
+}
+
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -1903,8 +1911,17 @@ select {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(29, 186, 196, 0));
 }
 
+.from-\[\#00B4BF\] {
+  --tw-gradient-from: #00B4BF;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 180, 191, 0));
+}
+
 .to-white {
   --tw-gradient-to: #fff;
+}
+
+.to-transparent {
+  --tw-gradient-to: transparent;
 }
 
 .fill-current {
@@ -3034,6 +3051,16 @@ select {
   .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .md\:leading-\[80px\] {
