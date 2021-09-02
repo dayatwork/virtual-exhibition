@@ -1057,6 +1057,11 @@ select {
   margin-bottom: 1rem;
 }
 
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .mb-8 {
   margin-bottom: 2rem;
 }
@@ -1564,6 +1569,14 @@ select {
   gap: 2.5rem;
 }
 
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-14 {
+  gap: 3.5rem;
+}
+
 .gap-y-4 {
   row-gap: 1rem;
 }
@@ -1643,6 +1656,12 @@ select {
   --tw-space-y-reverse: 0;
   margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0px * var(--tw-space-y-reverse));
+}
+
+.space-y-10 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
 }
 
 .divide-y-2 > :not([hidden]) ~ :not([hidden]) {
@@ -1935,6 +1954,10 @@ select {
   padding: 5rem;
 }
 
+.p-4 {
+  padding: 1rem;
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -2112,6 +2135,14 @@ select {
   padding-left: 4rem;
 }
 
+.pl-5 {
+  padding-left: 1.25rem;
+}
+
+.pl-6 {
+  padding-left: 1.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2191,6 +2222,14 @@ select {
 
 .leading-relaxed {
   line-height: 1.625;
+}
+
+.leading-9 {
+  line-height: 2.25rem;
+}
+
+.leading-7 {
+  line-height: 1.75rem;
 }
 
 .tracking-wider {
@@ -2289,6 +2328,10 @@ select {
 .text-\[\#063C40\] {
   --tw-text-opacity: 1;
   color: rgba(6, 60, 64, var(--tw-text-opacity));
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .placeholder-gray-400::-moz-placeholder {
@@ -3091,6 +3134,10 @@ select {
     margin-left: 1rem;
   }
 
+  .lg\:mt-4 {
+    margin-top: 1rem;
+  }
+
   .lg\:block {
     display: block;
   }
@@ -3137,6 +3184,10 @@ select {
 
   .lg\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:flex-row {
@@ -3214,6 +3265,11 @@ select {
     padding-bottom: 0.5rem;
   }
 
+  .lg\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
   .lg\:pr-8 {
     padding-right: 2rem;
   }
@@ -3222,13 +3278,30 @@ select {
     padding-bottom: 5rem;
   }
 
+  .lg\:text-left {
+    text-align: left;
+  }
+
+  .lg\:text-center {
+    text-align: center;
+  }
+
   .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
 
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
   .lg\:leading-loose {
     line-height: 2;
+  }
+
+  .lg\:leading-relaxed {
+    line-height: 1.625;
   }
 
   .lg\:line-clamp-3 {
