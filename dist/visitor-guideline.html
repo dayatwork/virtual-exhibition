@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="tailwind.css">
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <title>Virtual Exhibition</title>
+  <style>
+    .swiper-pagination-bullet {
+      border-radius: 0;
+      width: 16px;
+      height: 16px;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: #FFF;
+    }
+
+    .overlay-nav {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+
+<body x-data="{openMobileMenu: false, openGuestModal: false}">
+
+  <!-- Guest Modal -->
+  <div x-show="false" @keydown.window.escape="openGuestModal = false" class="fixed z-60 inset-0 overflow-y-auto"
+    aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+      <!-- Overlay -->
+      <div x-show="openGuestModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+        x-description="Background overlay, show/hide based on modal state."
+        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="openGuestModal = false"
+        aria-hidden="true"></div>
+
+
+      <!-- This element is to trick the browser into centering the modal contents. -->
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+
+      <div x-show="openGuestModal" x-transition:enter="transform transition ease-in-out duration-300 sm:duration-400"
+        x-transition:enter-start="translate-y-full opacity-0" x-transition:enter-end="translate-y-0 opacity-100"
+        x-transition:leave="transform transition ease-in-out duration-300 sm:duration-400"
+        x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-full opacity-0"
+        x-description="Modal panel, show/hide based on modal state."
+        class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full sm:max-w-sm sm:w-full sm:p-6">
+        <h3 class="mb-8 text-xl text-center font-bold">Please Submit Your Email to Access Full Features!</h3>
+        <img src="" alt="">
+        <form action="#" class="space-y-4" method="POST">
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <div class="mt-1">
+              <input id="email" name="email" type="email"
+                class="appearance-none block w-full px-3 py-2 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#00B4BF] focus:ring-2 focus:ring-offset-1 focus:border-transparent border-gray-300 bg-white">
+            </div>
+          </div>
+
+          <div class="mt-5 sm:mt-6">
+            <button type="button"
+              class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-[#00B4BF] text-base font-medium text-white hover:bg-[#00B4BF] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00B4BF] sm:text-sm"
+              @click="openGuestModal = false">
+              Submit
+            </button>
+          </div>
+        </form>
+        <div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Header -->
+  <header
+    class="sticky z-40 md:z-auto top-0 sm:top-auto bg-white sm:bg-transparent flex sm:flex h-[50px] sm:h-[70px] max-w-7xl mx-auto px-4 md:px-2 items-center justify-between">
+    <div class="flex items-center space-x-2 sm:space-x-3">
+      <img class="w-10 h-10 sm:w-14 sm:h-14" src="assets/ptpi.png" alt="Logo PTPI">
+      <div>
+        <div class="text-sm sm:text-lg xl:text-2xl uppercase font-bold text-gray-800 tracking-wider">Hospital
+          Engineering Forum 2021
+        </div>
+        <div class="hidden sm:block text-xs xl:text-md uppercase text-gray-600 tracking-wider">Plan Your Hospital with
+          The Most Cost Effective Technology!
+        </div>
+      </div>
+    </div>
+    <div class="block md:hidden">
+      <button @click="openMobileMenu = true" type="button"
+        class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#116368]"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="openMobileMenu" x-transition:enter="transition ease-out duration-100"
+      x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100"
+      x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100"
+      x-transition:leave-end="transform opacity-0 scale-95" @click.away="openMobileMenu = false"
+      class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-50">
+      <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+        <div class="pt-5 pb-6 px-5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2 sm:space-x-3">
+              <img class="w-10 h-10 sm:w-14 sm:h-14" src="assets/ptpi.png" alt="Logo PTPI">
+              <div>
+                <div class="text-sm sm:text-lg xl:text-2xl uppercase font-bold text-gray-800 tracking-wider">Hospital
+                  Engineering
+                  Forum
+                  2021
+                </div>
+                <div class="hidden sm:block text-xs xl:text-md uppercase text-gray-600 tracking-wider">Plan your
+                  hospital
+                  with
+                  the
+                  latest
+                  technologies!
+                </div>
+              </div>
+            </div>
+            <div class="-mr-2">
+              <button @click="openMobileMenu = false" type="button"
+                class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#00B4BF]">
+                <span class="sr-only">Close menu</span>
+                <!-- Heroicon name: outline/x -->
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="mt-6">
+            <nav class="grid gap-y-4">
+              <!-- Home -->
+              <a href="index.html"
+                class="bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-[#00B4BF]">
+                <!-- Heroicon name: outline/chart-bar -->
+                <svg class="flex-shrink-0 h-6 w-6 text-[#00B4BF]" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="ml-3 text-base font-medium text-gray-900">
+                  Home
+                </span>
+              </a>
+
+              <!-- Overview -->
+              <div x-data="{ open: false }" class="space-y-1">
+                <button type="button"
+                  class="bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-[#00B4BF]"
+                  x-state:on="Current" x-state:off="Default" aria-controls="sub-menu-1" @click="open = !open"
+                  aria-expanded="false" x-bind:aria-expanded="open.toString()"
+                  x-state-description="Current: &quot;bg-gray-100 text-gray-900&quot;, Default: &quot;bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900&quot;">
+                  <svg class="flex-shrink-0 h-6 w-6 text-[#00B4BF]" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                  </svg>
+                  <span class="flex-1 ml-3 text-base font-medium text-gray-900">
+                    Overview
+                  </span>
+                  <svg
+                    class="text-gray-300 ml-3 flex-shrink-0 h-5 w-5 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150"
+                    viewBox="0 0 20 20" x-state:on="Expanded" x-state:off="Collapsed" aria-hidden="true"
+                    :class="{ 'text-gray-400 rotate-90': open, 'text-gray-300': !(open) }">
+                    <path d="M6 6L14 10L6 14V6Z" fill="currentColor"></path>
+                  </svg>
+                </button>
+                <div x-description="Expandable link section, show/hide based on state." class="space-y-1"
+                  id="sub-menu-1" x-show="open">
+
+                  <a href="about-hef.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    About HEF
+                  </a>
+
+                  <a href="about-iahe.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    About IAHE
+                  </a>
+
+                  <a href="webinar-rundown.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Webinar Rundown
+                  </a>
+
+                  <a href="news.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    News
+                  </a>
+
+                  <a href="important-dates.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Important Dates
+                  </a>
+
+                </div>
+              </div>
+
+              <!-- Visitor -->
+              <div x-data="{ open: false }" class="space-y-1">
+                <button type="button"
+                  class="bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-[#00B4BF]"
+                  x-state:on="Current" x-state:off="Default" aria-controls="sub-menu-1" @click="open = !open"
+                  aria-expanded="false" x-bind:aria-expanded="open.toString()"
+                  x-state-description="Current: &quot;bg-gray-100 text-gray-900&quot;, Default: &quot;bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900&quot;">
+                  <svg class="flex-shrink-0 h-6 w-6 text-[#00B4BF]" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span class="flex-1 ml-3 text-base font-medium text-gray-900">
+                    Visitor
+                  </span>
+                  <svg
+                    class="text-gray-300 ml-3 flex-shrink-0 h-5 w-5 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150"
+                    viewBox="0 0 20 20" x-state:on="Expanded" x-state:off="Collapsed" aria-hidden="true"
+                    :class="{ 'text-gray-400 rotate-90': open, 'text-gray-300': !(open) }">
+                    <path d="M6 6L14 10L6 14V6Z" fill="currentColor"></path>
+                  </svg>
+                </button>
+                <div x-description="Expandable link section, show/hide based on state." class="space-y-1"
+                  id="sub-menu-1" x-show="open">
+
+                  <a href="#"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Visitor Guideline
+                  </a>
+
+                  <a href="who-attend.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Who Attends?
+                  </a>
+
+                  <a href="why-attend.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Why Attend?
+                  </a>
+                </div>
+              </div>
+
+              <!-- Exhibitor -->
+              <div x-data="{ open: false }" class="space-y-1">
+                <button type="button"
+                  class="bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-[#00B4BF]"
+                  x-state:on="Current" x-state:off="Default" aria-controls="sub-menu-1" @click="open = !open"
+                  aria-expanded="false" x-bind:aria-expanded="open.toString()"
+                  x-state-description="Current: &quot;bg-gray-100 text-gray-900&quot;, Default: &quot;bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900&quot;">
+                  <svg class="flex-shrink-0 h-6 w-6 text-[#00B4BF]" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                  </svg>
+                  <span class="flex-1 ml-3 text-base font-medium text-gray-900">
+                    Exhibitor
+                  </span>
+                  <svg
+                    class="text-gray-300 ml-3 flex-shrink-0 h-5 w-5 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150"
+                    viewBox="0 0 20 20" x-state:on="Expanded" x-state:off="Collapsed" aria-hidden="true"
+                    :class="{ 'text-gray-400 rotate-90': open, 'text-gray-300': !(open) }">
+                    <path d="M6 6L14 10L6 14V6Z" fill="currentColor"></path>
+                  </svg>
+                </button>
+                <div x-description="Expandable link section, show/hide based on state." class="space-y-1"
+                  id="sub-menu-1" x-show="open">
+
+                  <a href="#"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Exhibitor Guideline
+                  </a>
+
+                  <a href="who-exhibit.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Who Exhibit?
+                  </a>
+
+                  <a href="why-exhibit.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Why Exhibit?
+                  </a>
+
+                  <a href="packages.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Packages
+                  </a>
+
+                  <!-- <a href="#"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Exhibitor List
+                  </a>
+
+                  <a href="#"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    Sponsor & Partner
+                  </a> -->
+                </div>
+              </div>
+
+              <!-- FAQ -->
+              <div x-data="{ open: false }" class="space-y-1">
+                <button type="button"
+                  class="bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-[#00B4BF]"
+                  x-state:on="Current" x-state:off="Default" aria-controls="sub-menu-1" @click="open = !open"
+                  aria-expanded="false" x-bind:aria-expanded="open.toString()"
+                  x-state-description="Current: &quot;bg-gray-100 text-gray-900&quot;, Default: &quot;bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900&quot;">
+                  <svg class="flex-shrink-0 h-6 w-6 text-[#00B4BF]" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span class="flex-1 ml-3 text-base font-medium text-gray-900">
+                    FAQ
+                  </span>
+                  <svg
+                    class="text-gray-300 ml-3 flex-shrink-0 h-5 w-5 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150"
+                    viewBox="0 0 20 20" x-state:on="Expanded" x-state:off="Collapsed" aria-hidden="true"
+                    :class="{ 'text-gray-400 rotate-90': open, 'text-gray-300': !(open) }">
+                    <path d="M6 6L14 10L6 14V6Z" fill="currentColor"></path>
+                  </svg>
+                </button>
+                <div x-description="Expandable link section, show/hide based on state." class="space-y-1"
+                  id="sub-menu-1" x-show="open">
+
+                  <a href="faq-general.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    FAQ General & Technical
+                  </a>
+
+                  <a href="faq-visitor.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    FAQ Visitor
+                  </a>
+
+                  <a href="faq-exhibitor.html"
+                    class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                    FAQ Exhibitor
+                  </a>
+                </div>
+              </div>
+
+            </nav>
+          </div>
+        </div>
+        <div class="py-6 px-5 space-y-6">
+          <div>
+            <div class="grid grid-cols-2 gap-2">
+              <a href="#"
+                class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:bg-[#116368] bg-[#00B4BF]">
+                Register as Exhibitor
+              </a>
+              <a href="#"
+                class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:bg-[#116368] bg-[#00B4BF]">
+                Register as Visitor
+              </a>
+            </div>
+            <p class="mt-6 text-center text-base font-medium text-gray-500">
+              Already have an account?
+              <a href="#" class="hover:text-[#116368] text-[#00B4BF]">
+                Login
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav id="navigation"
+    class="hidden md:flex w-full top-0 left-0 right-0 justify-between items-center py-4 px-4 md:px-2 z-50 bg-[#25243A]">
+    <div id="navigation-wrapper" class="max-w-7xl mx-auto w-full flex justify-between items-center z-50">
+      <ul class="flex space-x-4 lg:space-x-12 font-medium items-center">
+        <!-- Home -->
+        <li><a href="index.html"
+            class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold uppercase"
+            style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2);">Home</a>
+        </li>
+
+        <!-- Overview -->
+        <li class="relative" x-data="{open: false}"><button @click="open = true"
+            class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold uppercase pt-[9px] flex items-center group"
+            style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2);">
+            <span>Overview</span>
+            <svg class="text-gray-200 group-hover:text-white ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+              aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+
+          <!-- Sub Menu Overview -->
+          <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-1"
+            x-description="Flyout menu, show/hide based on flyout menu state."
+            class="absolute z-50 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0" x-ref="panel"
+            @click.away="open = false">
+            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+              <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+
+                <a href="about-hef.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  About HEF
+                </a>
+
+                <a href="about-iahe.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  About IAHE
+                </a>
+
+                <a href="webinar-rundown.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Webinar Rundown
+                </a>
+
+                <a href="news.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  News
+                </a>
+
+                <a href="important-dates.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Important Dates
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Visitor -->
+        <li class="relative" x-data="{open: false}"><button @click="open = true; openGuestModal = true"
+            class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold uppercase pt-[9px] flex items-center group"
+            style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2);">
+            <span>Visitor</span>
+            <svg class="text-gray-200 group-hover:text-white ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+              aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+
+          <!-- Sub Menu Visitor -->
+          <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-1"
+            x-description="Flyout menu, show/hide based on flyout menu state."
+            class="absolute z-50 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0" x-ref="panel"
+            @click.away="open = false">
+            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+              <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+
+                <a href="#" class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Visitor Guideline
+                </a>
+
+                <a href="who-attend.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Who Attends?
+                </a>
+
+                <a href="why-attend.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Why Attend
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Exhibitor -->
+        <li class="relative" x-data="{open: false}"><button @click="open = true; openGuestModal = true"
+            class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold uppercase pt-[9px] flex items-center group"
+            style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2);">
+            <span>Exhibitor</span>
+            <svg class="text-gray-200 group-hover:text-white ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+              aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+
+          <!-- Sub Menu Exhibitor -->
+          <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-1"
+            x-description="Flyout menu, show/hide based on flyout menu state."
+            class="absolute z-50 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0" x-ref="panel"
+            @click.away="open = false">
+            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+              <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+
+                <a href="#" class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Exhibitor Guideline
+                </a>
+
+                <a href="who-exhibit.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Who Exhibit?
+                </a>
+
+                <a href="why-exhibit.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Why Exhibit?
+                </a>
+
+                <a href="packages.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Packages
+                </a>
+
+                <!-- <a href="#" class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Exhibitor List
+                </a>
+
+                <a href="#" class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Sponsor & Partner
+                </a> -->
+
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- FAQ -->
+        <li class="relative" x-data="{open: false}"><button @click="open = true"
+            class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold uppercase pt-[9px] flex items-center group"
+            style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2);">
+            <span>FAQ</span>
+            <svg class="text-gray-200 group-hover:text-white ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+              aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+
+          <!-- Sub Menu FAQ -->
+          <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-1"
+            x-description="Flyout menu, show/hide based on flyout menu state."
+            class="absolute z-50 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0" x-ref="panel"
+            @click.away="open = false">
+            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+              <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+
+                <a href="faq-general.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  FAQ General & Technical
+                </a>
+
+                <a href="faq-visitor.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  FAQ Visitor
+                </a>
+
+                <a href="faq-exhibitor.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  FAQ Exhibitor
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="flex items-center space-x-4 lg:space-x-8 font-medium">
+        <li class="relative" x-data="{open: false}"><button @click="open = true"
+            class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold uppercase pt-[9px] flex items-center group"
+            style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2);">
+            <span>Register</span>
+            <svg class="text-gray-200 group-hover:text-white ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+              aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+
+          <!-- Sub Menu Register -->
+          <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-1"
+            x-description="Flyout menu, show/hide based on flyout menu state."
+            class="absolute z-50 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0" x-ref="panel"
+            @click.away="open = false">
+            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+              <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+
+                <a href="register-visitor.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Register as Visitor
+                </a>
+
+                <a href="register-exhibitor.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                  Register as Exhibitor
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="login.html"
+            class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold border border-gray-200 hover:border-white rounded-md uppercase"
+            style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2)">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <section class="max-w-7xl mx-auto py-10 px-2 bg-white mb-10">
+    <div class="mt-4 text-[#00B4BF] uppercase text-xl font-bold text-center lg:text-left">Guideline</div>
+    <h3 class="mt-2 mb-10 text-4xl font-bold text-gray-700 text-center lg:text-left">Visitor Guideline
+    </h3>
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14">
+      <div class="space-y-2 shadow-xl p-4 rounded-xl">
+        <div class="mb-4">
+          <img src="assets/visitor-guideline-1.png" alt="Guideline 1">
+        </div>
+        <div class="mb-4">
+          <img src="assets/visitor-guideline-2.png" alt="Guideline 2">
+        </div>
+        <div class="mb-4">
+          <img src="assets/visitor-guideline-3.png" alt="Guideline 3">
+        </div>
+        <div class="mb-4">
+          <img src="assets/visitor-guideline-4.png" alt="Guideline 4">
+        </div>
+      </div>
+
+      <ol
+        class="max-w-5xl mx-auto leading-relaxed lg:text-lg lg:leading-relaxed text-gray-700 list-decimal space-y-4 pl-6">
+        <li>
+          Go to the visitor’s registration page at https://hospital-engineering-expo.com/register-visitor/
+        </li>
+        <li>
+          Enter your company’s representative information
+        </li>
+        <li>
+          Enter an active email address. We will send information and notifications to your email.
+        </li>
+        <li>
+          Enter a phone number that’s connected to WhatsApp
+        </li>
+        <li>
+          Enter the representative full name and title.
+        </li>
+        <li>
+          Select the representative job function. If you did not found a suitable one, you can select ‘Other’
+        </li>
+        <li>
+          Enter a password and retype your password in “Confirm Password”
+        </li>
+        <li>
+          Enter your institution/ company name
+        </li>
+        <li>
+          Select the type of institution that best describes your company/institution. If you did not found a suitable
+          one, select ‘Other’
+        </li>
+        <li>
+          Select your country of origin
+        </li>
+        <li>
+          If you choose Indonesia, please select your province
+        </li>
+        <li>
+          Select the visitor type that best suits you
+        </li>
+        <li>
+          Tick the products you are interested in (You can tick as much as possible)
+        </li>
+        <li>
+          Tick your purpose of visiting HEF 2021
+        </li>
+        <li>Select if you have registered in SEHAT RI or not. If you forget or are unsure, you may select "I Forget"
+        </li>
+        <li>Once you have finished filling in the registration form, click "Register". You'll be registered in our
+          system
+          and may login to our website. Further guidelines will be informed later.</li>
+      </ol>
+    </div>
+
+  </section>
+
+
+  <!-- Call To Action -->
+  <section class="max-w-7xl mx-auto py-10 px-2 bg-white mb-10">
+    <h3 class="mt-2 mb-10 text-4xl font-bold text-gray-700 uppercase">I'd like to be</h3>
+    <div class="grid grid-cols-2 gap-2 md:gap-10">
+      <!-- CTA Exhibitor -->
+      <div>
+        <div
+          style="background-image: url(assets/cta-exhibitor.png); background-position: center; background-size: cover;"
+          class="h-40 md:h-72 w-auto rounded-xl flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 w-full h-full" style="background: rgba(1, 152, 162, 0.34);"></div>
+          <div class="flex flex-col items-center mt-4">
+            <div class="text-md md:text-4xl font-extrabold text-white uppercase tracking-widest mb-4 z-10"
+              style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Exhibitor
+            </div>
+            <a href="register-exhibitor.html"
+              class="bg-[#4A4A4A] text-white text-xs sm:text-md py-1 px-2 rounded-md md:rounded-lg uppercase tracking-wider font-medium shadow-2xl hover:shadow-none z-10">Register
+              Here</a>
+          </div>
+        </div>
+        <p class="mt-4 px-2 line-clamp-3 text-gray-600">Capture the immense growth of the healthcare market by being an
+          Exhibitor at First Asia's National Seminar and
+          International Fair, HEF 2021.</p>
+      </div>
+
+      <!-- CTA Visitor -->
+      <div>
+        <div style="background-image: url(assets/cta-visitor.png); background-position: center; background-size: cover;"
+          class="h-40 md:h-72 w-auto rounded-xl flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 w-full h-full" style="background: rgba(1, 152, 162, 0.34);"></div>
+          <div class="flex flex-col items-center mt-4">
+            <div class="text-md md:text-4xl font-extrabold text-white uppercase tracking-widest mb-4 z-10"
+              style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Visitor
+            </div>
+            <a href="register-visitor.html"
+              class="bg-[#4A4A4A] text-white text-xs sm:text-md py-1 px-2 rounded-md md:rounded-lg uppercase tracking-wider font-medium shadow-2xl hover:shadow-none z-10">Register
+              Here</a>
+          </div>
+        </div>
+        <p class="mt-4 px-2 line-clamp-3 text-gray-600">Learn, network and do business as a Visitor at Hospital
+          Engineering Forum 2021, The First Asia's National Seminar and
+          International Fair in Healthcare Engineer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Organized by -->
+  <section class="max-w-7xl mx-auto md:py-20 mb-20 px-2 bg-white">
+    <h3 class="text-3xl text-gray-700 text-center font-medium">Organized by</h3>
+    <div class="mt-6 flex justify-center">
+
+      <img class="block md:hidden h-28 -ml-4" src="assets/kic-small.png" alt="Logo KIC">
+      <img class="hidden md:block h-28 -ml-4" src="assets/kic.png" alt="Logo KIC">
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="bg-[#25243A]">
+    <div class="max-w-7xl mx-auto pt-6 md:pt-20 md:pb-28 px-2 grid md:grid-cols-2 gap-6 items-center overflow-hidden">
+      <div>
+        <div class="text-[#00B4BF] uppercase font-medium text-lg tracking-widest">Contact</div>
+        <h3 class="mt-2 text-3xl font-bold text-white">Contact Us</h3>
+        <div class="mt-10 flex flex-col space-y-8">
+          <div class="flex space-x-3 items-start">
+            <div class="border border-gray-600 rounded-full w-10 h-10 flex items-center justify-center">
+              <img class="w-4" src="assets/icons/address.svg" alt="Address">
+            </div>
+            <span class="flex-1 max-w-[350px] text-sm md:text-md text-white mt-0.5">
+              Gedung Wisma NH Building Lantai 1, Jl. Raya Pasar Minggu No.2B-C 2 1 2, RT.2/RW.2, Pancoran, Kec.
+              Pancoran,
+              Kota Jakarta
+              Selatan, Daerah Khusus Ibukota Jakarta 12780
+            </span>
+          </div>
+
+          <div class="flex space-x-3 items-start">
+            <div class="border border-gray-600 rounded-full w-10 h-10 flex items-center justify-center">
+              <img class="w-4" src="assets/icons/phone.svg" alt="Phone">
+            </div>
+            <div class="flex-1 max-w-[350px] text-sm md:text-md text-white mt-0.5 flex flex-col space-y-2">
+              <span>+62 858 9377 7283 (Adrian)</span>
+              <span>+62 877 7889 9087 (Jordy)</span>
+            </div>
+          </div>
+
+          <div class="flex space-x-3 items-start">
+            <div class="border border-gray-600 rounded-full w-10 h-10 flex items-center justify-center">
+              <img class="w-4" src="assets/icons/email.svg" alt="Email">
+            </div>
+            <span class="flex-1 max-w-[350px] text-sm md:text-md text-white mt-0.5">
+              hospital.engineering.expo@gmail.com
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <!-- Ganti dengan google maps -->
+        <div class="aspect-w-5 aspect-h-3 rounded-2xl overflow-hidden">
+
+          <img class="w-full h-full object-cover" src="assets/google-map.png" alt="Google map">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#25243A]">
+    <div class="max-w-7xl mx-auto py-6 px-2 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="text-gray-400 text-sm self-center justify-self-center md:justify-self-start">Copyright &copy; Hospital
+        Engineering Expo
+        2021
+      </div>
+      <div class="flex space-x-4 self-center justify-self-center ">
+        <a class="text-gray-400 hover:text-white" href="https://facebook.com">
+          <svg class="fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+            viewBox="0 0 24 24">
+            <path
+              d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" />
+          </svg>
+        </a>
+        <a class="text-gray-400 hover:text-white" href="https://twitter.com">
+          <svg class="fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+            viewBox="0 0 24 24">
+            <path
+              d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" />
+          </svg>
+        </a>
+        <a class="text-gray-400 hover:text-white" href="https://linkedin.com">
+          <svg class="fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+            viewBox="0 0 24 24">
+            <path
+              d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z" />
+          </svg>
+        </a>
+      </div>
+      <div class="flex space-x-4 self-center justify-self-center md:justify-self-end">
+        <a class="text-gray-400 hover:text-white text-sm" href="">Privacy Policy</a>
+        <a class="text-gray-400 hover:text-white text-sm" href="">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      // Optional parameters
+      direction: 'horizontal',
+      loop: true,
+      autoplay:
+      {
+        delay: 4000,
+      },
+      speed: 1000,
+
+      // If we need pagination
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+
+      // And if we need scrollbar
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+    });
+
+    // ======== Sticky Navigation =========
+    const navigation = document.getElementById('navigation');
+    const header = document.getElementById('header');
+
+    window.addEventListener('scroll', (e) => {
+      if (window.scrollY > 150) {
+        navigation.classList.remove('static');
+        navigation.classList.add('fixed')
+        navigation.classList.add('overlay-nav')
+      } else {
+        navigation.classList.remove('fixed');
+        navigation.classList.remove('overlay-nav')
+        navigation.classList.add('static')
+      }
+    });
+
+  </script>
+</body>
+
+</html>
