@@ -30,8 +30,8 @@
 <body x-data="{openMobileMenu: false, openGuestModal: false}">
 
   <!-- Guest Modal -->
-  <div x-show="false" @keydown.window.escape="openGuestModal = false" class="fixed z-60 inset-0 overflow-y-auto"
-    aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+  <div x-show="openGuestModal" @keydown.window.escape="openGuestModal = false"
+    class="fixed z-60 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
       <!-- Overlay -->
@@ -578,7 +578,7 @@
           </li>
 
           <!-- Visitor -->
-          <li class="relative" x-data="{open: false}"><button @click="open = true; openGuestModal = true"
+          <li class="relative" x-data="{open: false}"><button @click="open = true"
               class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold uppercase pt-[9px] flex items-center group"
               style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2);">
               <span>Visitor</span>
@@ -621,7 +621,7 @@
           </li>
 
           <!-- Exhibitor -->
-          <li class="relative" x-data="{open: false}"><button @click="open = true; openGuestModal = true"
+          <li class="relative" x-data="{open: false}"><button @click="open = true"
               class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold uppercase pt-[9px] flex items-center group"
               style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2);">
               <span>Exhibitor</span>
@@ -648,7 +648,7 @@
                     Exhibitor Guideline
                   </a>
 
-                  <a href="who-exhibit.html"
+                  <a @click="openGuestModal" href="who-exhibit.html"
                     class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
                     Who Exhibit?
                   </a>

@@ -27,11 +27,11 @@
   </style>
 </head>
 
-<body x-data="{openMobileMenu: false, openGuestModal: false}">
+<body x-data="{openMobileMenu: false, openGuestModal: false}" x-init="setTimeout(() => openGuestModal = true, 1000)">
 
   <!-- Guest Modal -->
-  <div x-show="false" @keydown.window.escape="openGuestModal = false" class="fixed z-60 inset-0 overflow-y-auto"
-    aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+  <div x-show="openGuestModal" class="fixed z-60 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog"
+    aria-modal="true">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
       <!-- Overlay -->
@@ -39,8 +39,7 @@
         x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
         x-description="Background overlay, show/hide based on modal state."
-        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="openGuestModal = false"
-        aria-hidden="true"></div>
+        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
 
       <!-- This element is to trick the browser into centering the modal contents. -->
@@ -452,7 +451,7 @@
         </li>
 
         <!-- Visitor -->
-        <li class="relative" x-data="{open: false}"><button @click="open = true; openGuestModal = true"
+        <li class="relative" x-data="{open: false}"><button @click="open = true"
             class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold uppercase pt-[9px] flex items-center group"
             style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2);">
             <span>Visitor</span>
@@ -495,7 +494,7 @@
         </li>
 
         <!-- Exhibitor -->
-        <li class="relative" x-data="{open: false}"><button @click="open = true; openGuestModal = true"
+        <li class="relative" x-data="{open: false}"><button @click="open = true"
             class="text-gray-200 hover:text-white cursor-pointer tracking-widest px-3 py-1.5 text-sm md:text-md font-bold uppercase pt-[9px] flex items-center group"
             style="text-shadow: 1px 1px 4px rgba(0,0,0,0.2);">
             <span>Exhibitor</span>
