@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
   <link rel="stylesheet" href="tailwind.css">
   <script src="//unpkg.com/alpinejs" defer></script>
   <title>Virtual Exhibition</title>
@@ -243,7 +242,7 @@
                 <div x-description="Expandable link section, show/hide based on state." class="space-y-1"
                   id="sub-menu-1" x-show="open">
 
-                  <a href="#"
+                  <a href="visitor-guideline.html"
                     class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
                     Visitor Guideline
                   </a>
@@ -285,7 +284,7 @@
                 <div x-description="Expandable link section, show/hide based on state." class="space-y-1"
                   id="sub-menu-1" x-show="open">
 
-                  <a href="#"
+                  <a href="exhibitor-guideline.html"
                     class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
                     Exhibitor Guideline
                   </a>
@@ -476,7 +475,8 @@
             <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
               <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
 
-                <a href="#" class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                <a href="visitor-guideline.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
                   Visitor Guideline
                 </a>
 
@@ -519,7 +519,8 @@
             <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
               <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
 
-                <a href="#" class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
+                <a href="exhibitor-guideline.html"
+                  class="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
                   Exhibitor Guideline
                 </a>
 
@@ -797,36 +798,7 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
   <script>
-    const swiper = new Swiper('.swiper', {
-      // Optional parameters
-      direction: 'horizontal',
-      loop: true,
-      autoplay:
-      {
-        delay: 4000,
-      },
-      speed: 1000,
-
-      // If we need pagination
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-
-      // And if we need scrollbar
-      scrollbar: {
-        el: '.swiper-scrollbar',
-      },
-    });
-
     // ======== Sticky Navigation =========
     const navigation = document.getElementById('navigation');
     const header = document.getElementById('header');
