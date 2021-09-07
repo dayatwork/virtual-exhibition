@@ -1799,6 +1799,11 @@ select {
   border-color: rgba(67, 56, 202, var(--tw-border-opacity));
 }
 
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgba(239, 68, 68, var(--tw-border-opacity));
+}
+
 .border-opacity-25 {
   --tw-border-opacity: 0.25;
 }
@@ -2338,6 +2343,11 @@ select {
 .text-\[\#063C40\] {
   --tw-text-opacity: 1;
   color: rgba(6, 60, 64, var(--tw-text-opacity));
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgba(239, 68, 68, var(--tw-text-opacity));
 }
 
 .underline {
