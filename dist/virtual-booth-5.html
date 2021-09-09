@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="tailwind.css">
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <title>Virtual Booth 5 Poster</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .virtual-booth {
+      background-image: url('./assets/virtual-booth-5-poster.jpg');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      aspect-ratio: 2 / 1;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .bg-image {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .btn-1 {
+      position: absolute;
+      top: 60%;
+      left: 14.5%;
+    }
+
+    .btn-2 {
+      position: absolute;
+      top: 60%;
+      left: 22.5%;
+    }
+
+    .btn-3 {
+      position: absolute;
+      top: 48%;
+      left: 32%;
+    }
+
+    .btn-4 {
+      position: absolute;
+      top: 48%;
+      left: 40.25%;
+    }
+
+    .btn-5 {
+      position: absolute;
+      top: 48%;
+      left: 60%;
+    }
+
+    .btn-6 {
+      position: absolute;
+      top: 48%;
+      left: 68%;
+    }
+
+    .btn-7 {
+      position: absolute;
+      top: 48%;
+      left: 76.5%;
+    }
+
+    .btn-8 {
+      position: absolute;
+      top: 65%;
+      left: 32.5%;
+    }
+
+    .btn-9 {
+      position: absolute;
+      top: 52%;
+      left: 49.25%;
+    }
+
+    .btn-10 {
+      position: absolute;
+      top: 16%;
+      left: 46%;
+    }
+
+    .expandable-textarea {
+      border: 1px solid #ccc;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 1px 6px;
+
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      resize: both;
+      min-height: 20px;
+      line-height: 20px;
+    }
+
+    .chat-bg {
+      background-color: #cccccc;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 304' width='304' height='304'%3E%3Cpath fill='%23acacac' fill-opacity='0.4' d='M44.1 224a5 5 0 1 1 0 2H0v-2h44.1zm160 48a5 5 0 1 1 0 2H82v-2h122.1zm57.8-46a5 5 0 1 1 0-2H304v2h-42.1zm0 16a5 5 0 1 1 0-2H304v2h-42.1zm6.2-114a5 5 0 1 1 0 2h-86.2a5 5 0 1 1 0-2h86.2zm-256-48a5 5 0 1 1 0 2H0v-2h12.1zm185.8 34a5 5 0 1 1 0-2h86.2a5 5 0 1 1 0 2h-86.2zM258 12.1a5 5 0 1 1-2 0V0h2v12.1zm-64 208a5 5 0 1 1-2 0v-54.2a5 5 0 1 1 2 0v54.2zm48-198.2V80h62v2h-64V21.9a5 5 0 1 1 2 0zm16 16V64h46v2h-48V37.9a5 5 0 1 1 2 0zm-128 96V208h16v12.1a5 5 0 1 1-2 0V210h-16v-76.1a5 5 0 1 1 2 0zm-5.9-21.9a5 5 0 1 1 0 2H114v48H85.9a5 5 0 1 1 0-2H112v-48h12.1zm-6.2 130a5 5 0 1 1 0-2H176v-74.1a5 5 0 1 1 2 0V242h-60.1zm-16-64a5 5 0 1 1 0-2H114v48h10.1a5 5 0 1 1 0 2H112v-48h-10.1zM66 284.1a5 5 0 1 1-2 0V274H50v30h-2v-32h18v12.1zM236.1 176a5 5 0 1 1 0 2H226v94h48v32h-2v-30h-48v-98h12.1zm25.8-30a5 5 0 1 1 0-2H274v44.1a5 5 0 1 1-2 0V146h-10.1zm-64 96a5 5 0 1 1 0-2H208v-80h16v-14h-42.1a5 5 0 1 1 0-2H226v18h-16v80h-12.1zm86.2-210a5 5 0 1 1 0 2H272V0h2v32h10.1zM98 101.9V146H53.9a5 5 0 1 1 0-2H96v-42.1a5 5 0 1 1 2 0zM53.9 34a5 5 0 1 1 0-2H80V0h2v34H53.9zm60.1 3.9V66H82v64H69.9a5 5 0 1 1 0-2H80V64h32V37.9a5 5 0 1 1 2 0zM101.9 82a5 5 0 1 1 0-2H128V37.9a5 5 0 1 1 2 0V82h-28.1zm16-64a5 5 0 1 1 0-2H146v44.1a5 5 0 1 1-2 0V18h-26.1zm102.2 270a5 5 0 1 1 0 2H98v14h-2v-16h124.1zM242 149.9V160h16v34h-16v62h48v48h-2v-46h-48v-66h16v-30h-16v-12.1a5 5 0 1 1 2 0zM53.9 18a5 5 0 1 1 0-2H64V2H48V0h18v18H53.9zm112 32a5 5 0 1 1 0-2H192V0h50v2h-48v48h-28.1zm-48-48a5 5 0 0 1-9.8-2h2.07a3 3 0 1 0 5.66 0H178v34h-18V21.9a5 5 0 1 1 2 0V32h14V2h-58.1zm0 96a5 5 0 1 1 0-2H137l32-32h39V21.9a5 5 0 1 1 2 0V66h-40.17l-32 32H117.9zm28.1 90.1a5 5 0 1 1-2 0v-76.51L175.59 80H224V21.9a5 5 0 1 1 2 0V82h-49.59L146 112.41v75.69zm16 32a5 5 0 1 1-2 0v-99.51L184.59 96H300.1a5 5 0 0 1 3.9-3.9v2.07a3 3 0 0 0 0 5.66v2.07a5 5 0 0 1-3.9-3.9H185.41L162 121.41v98.69zm-144-64a5 5 0 1 1-2 0v-3.51l48-48V48h32V0h2v50H66v55.41l-48 48v2.69zM50 53.9v43.51l-48 48V208h26.1a5 5 0 1 1 0 2H0v-65.41l48-48V53.9a5 5 0 1 1 2 0zm-16 16V89.41l-34 34v-2.82l32-32V69.9a5 5 0 1 1 2 0zM12.1 32a5 5 0 1 1 0 2H9.41L0 43.41V40.6L8.59 32h3.51zm265.8 18a5 5 0 1 1 0-2h18.69l7.41-7.41v2.82L297.41 50H277.9zm-16 160a5 5 0 1 1 0-2H288v-71.41l16-16v2.82l-14 14V210h-28.1zm-208 32a5 5 0 1 1 0-2H64v-22.59L40.59 194H21.9a5 5 0 1 1 0-2H41.41L66 216.59V242H53.9zm150.2 14a5 5 0 1 1 0 2H96v-56.6L56.6 162H37.9a5 5 0 1 1 0-2h19.5L98 200.6V256h106.1zm-150.2 2a5 5 0 1 1 0-2H80v-46.59L48.59 178H21.9a5 5 0 1 1 0-2H49.41L82 208.59V258H53.9zM34 39.8v1.61L9.41 66H0v-2h8.59L32 40.59V0h2v39.8zM2 300.1a5 5 0 0 1 3.9 3.9H3.83A3 3 0 0 0 0 302.17V256h18v48h-2v-46H2v42.1zM34 241v63h-2v-62H0v-2h34v1zM17 18H0v-2h16V0h2v18h-1zm273-2h14v2h-16V0h2v16zm-32 273v15h-2v-14h-14v14h-2v-16h18v1zM0 92.1A5.02 5.02 0 0 1 6 97a5 5 0 0 1-6 4.9v-2.07a3 3 0 1 0 0-5.66V92.1zM80 272h2v32h-2v-32zm37.9 32h-2.07a3 3 0 0 0-5.66 0h-2.07a5 5 0 0 1 9.8 0zM5.9 0A5.02 5.02 0 0 1 0 5.9V3.83A3 3 0 0 0 3.83 0H5.9zm294.2 0h2.07A3 3 0 0 0 304 3.83V5.9a5 5 0 0 1-3.9-5.9zm3.9 300.1v2.07a3 3 0 0 0-1.83 1.83h-2.07a5 5 0 0 1 3.9-3.9zM97 100a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-48 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 96a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-144a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM49 36a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM33 68a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 240a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm80-176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm112 176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 180a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 84a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'%3E%3C/path%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+
+<body
+  x-data="{openVideoModal: false, openProductSlideOver: false, openCompanyProfileSlideOver: false, openBookConsultationModal: false, openPosterModal: false, openChatModal: false, selectedPoster: null, posters: posters }">
+
+  <!-- Chat Button -->
+  <div class="absolute right-10 bottom-10 z-10" style="backdrop-filter: (4px);">
+    <button @click="openChatModal = true"
+      class="animate-bounce bg-white bg-opacity-50 hover:bg-opacity-80 transition-all duration-200 px-4 lg:px-3 py-6 rounded-full shadow-2xl">
+      <img class="w-16 lg:w-20" src="assets/chat-icon.png" alt="chat-icon">
+    </button>
+  </div>
+
+  <div class="virtual-booth">
+    <!-- Header / Navbar -->
+    <header class="bg-transparent sticky z-10">
+      <nav x-data="{openProfileDropdown: false, openMobileMenu: false}"
+        class="bg-transparent px-1.5 lg:px-2 py-1.5 2xl:py-2">
+        <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 bg-white rounded-t-lg lg:rounded-b-lg bg-opacity-50 shadow"
+          style="backdrop-filter: blur(20px);">
+          <div class="relative h-12 2xl:h-16 flex items-center justify-between">
+            <div class="px-2 flex items-center lg:px-0">
+              <div class="flex-shrink-0 flex items-center space-x-3">
+                <img class="block h-10 w-10 2xl:h-12 2xl:w-12" src="assets/ptpi.png" alt="Workflow">
+                <div class="hidden lg:block text-2xl font-bold text-[#00B4BF]">HEF 2021</div>
+              </div>
+              <div class="hidden lg:block lg:ml-10">
+                <div class="flex space-x-4">
+                  <a href="dashboard-visitor.html"
+                    class="text-gray-700 hover:text-gray-900 rounded-md px-3 font-medium">
+                    Dashboard
+                  </a>
+
+                  <a href="#" class="text-gray-700 hover:text-gray-900 rounded-md px-3 font-medium">
+                    Seminar
+                  </a>
+
+                  <a href="exhibitor-hall.html" class="text-[#00B4BF] rounded-md px-3 font-medium">
+                    Exhibitors
+                  </a>
+
+                  <!-- <a href="#" class="text-gray-700 hover:text-gray-900 rounded-md px-3 text-sm font-medium">
+                        Booking Consultancy
+                      </a>
+    
+                      <a href="#" class="text-gray-700 hover:text-gray-900 rounded-md px-3 text-sm font-medium">
+                        Certificate
+                      </a> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="flex lg:hidden">
+              <!-- Mobile menu button -->
+              <button type="button" x-on:click="openMobileMenu = !openMobileMenu"
+                class="p-2 rounded-md inline-flex items-center justify-center text-gray-800 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white"
+                aria-controls="mobile-menu" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <!-- Menu Icon -->
+                <svg x-bind:class="! openMobileMenu ? 'block' : 'hidden'" class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <!-- Close Menu Icon -->
+                <svg x-bind:class="! openMobileMenu ? 'hidden' : 'block'" class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <!-- Desktop User Dropdown -->
+            <div class="hidden lg:block lg:ml-4">
+              <div class="flex items-center">
+                <button
+                  class="flex-shrink-0 rounded-full p-1 text-white hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white">
+                  <span class="sr-only">View notifications</span>
+                  <!-- Heroicon name: outline/bell -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+                </button>
+
+                <!-- Profile dropdown -->
+                <div class="ml-3 relative flex-shrink-0">
+                  <div>
+                    <button x-on:click="openProfileDropdown = !openProfileDropdown" type="button"
+                      class="bg-[#183086] rounded-full flex text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white"
+                      id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                      <span class="sr-only">Open user menu</span>
+                      <img class="rounded-full h-8 w-8"
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        alt="">
+                    </button>
+                  </div>
+
+                  <div x-show="openProfileDropdown" x-transition:enter="transition ease-out duration-100"
+                    x-transition:enter-start="transform opacity-0 scale-95"
+                    x-transition:enter-end="transform opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-75"
+                    x-transition:leave-start="transform opacity-100 scale-100"
+                    x-transition:leave-end="transform opacity-0 scale-95" @click.away="openProfileDropdown = false"
+                    class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white opacity-75 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    style="backdrop-filter: blur(20px);" role="menu" aria-orientation="vertical"
+                    aria-labelledby="user-menu-button" tabindex="-1">
+                    <!-- Active: "bg-gray-100", Not Active: "" -->
+                    <a href="#" class="block py-2 px-4 text-sm text-gray-900 hover:text-[#00B4BF] font-medium"
+                      role="menuitem" tabindex="-1" id="user-menu-item-0">
+                      Your Profile
+                    </a>
+
+                    <a href="#" class="block py-2 px-4 text-sm text-gray-900 hover:text-[#00B4BF] font-medium"
+                      role="menuitem" tabindex="-1" id="user-menu-item-1">
+                      Settings
+                    </a>
+
+                    <a href="#" class="block py-2 px-4 text-sm text-gray-900 hover:text-[#00B4BF] font-medium"
+                      role="menuitem" tabindex="-1" id="user-menu-item-2">
+                      Sign out
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div x-show="openMobileMenu" class="lg:hidden bg-white bg-opacity-50 shadow-md rounded-b-lg"
+          style="backdrop-filter: blur(20px);" id="mobile-menu">
+          <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="#" class="text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
+              Dashboard
+            </a>
+
+            <a href="#" class="text-gray-900 hover:text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
+              Seminar
+            </a>
+            <a href="exhibitor-hall.html"
+              class="text-gray-900 hover:text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
+              Exhibitors
+            </a>
+          </div>
+          <div class="pt-4 pb-3 border-t border-white">
+            <div class="px-5 flex items-center">
+              <div class="flex-shrink-0">
+                <img class="rounded-full h-10 w-10"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt="">
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium text-gray-900">Tom Cook</div>
+                <div class="text-sm font-medium text-[#00B4BF]">tom@example.com</div>
+              </div>
+              <button
+                class="ml-auto flex-shrink-0 rounded-full p-1 text-gray-900 hover:text-[#00B4BF] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#00B4BF] focus:ring-white">
+                <span class="sr-only">View notifications</span>
+                <!-- Heroicon name: outline/bell -->
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+              </button>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:text-[#00B4BF]">
+                Your Profile
+              </a>
+
+              <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:text-[#00B4BF]">
+                Settings
+              </a>
+
+              <a href="#" class="block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:text-[#00B4BF]">
+                Sign out
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="px-1.5 lg:px-2 pb-2 max-w-7xl mx-auto">
+      <!-- Back Button -->
+      <div class="">
+        <a href="exhibitor-hall.html"
+          class="bg-white bg-opacity-50 py-2 pl-2 pr-3 font-medium rounded-md text-sm inline-flex items-center space-x-1 group"
+          style="background: rgba( 255, 255, 255, 0.3 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      backdrop-filter: blur( 2.5px );
+      -webkit-backdrop-filter: blur( 2.5px );
+      border-radius: 10px;
+      border: 1px solid rgba( 255, 255, 255, 0.18 );"><svg class="w-4 group-hover:-translate-x-1 transition" width="24"
+            height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M10.25 6.75L4.75 12L10.25 17.25" />
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M19.25 12H5" />
+          </svg>
+          <span>Exhibitor
+            List</span></a>
+      </div>
+
+      <!-- ###### Modals ###### -->
+      <!-- Start Video Modal/Dialog -->
+      <div x-show="openVideoModal" @keydown.window.escape="openVideoModal = false"
+        class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+          <!-- Overlay -->
+          <div x-show="openVideoModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+            x-description="Background overlay, show/hide based on modal state."
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="openVideoModal = false"
+            aria-hidden="true">
+          </div>
+
+
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+
+          <!-- Modal -->
+          <div x-show="openVideoModal" x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-description="Modal panel, show/hide based on modal state."
+            class="inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full sm:p-6 -translate-y-10"
+            style="background: rgba( 255, 255, 255, 0.15 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      backdrop-filter: blur( 6.5px );
+      -webkit-backdrop-filter: blur( 6.5px );
+      border-radius: 10px;
+      border: 1px solid rgba( 255, 255, 255, 0.18 );">
+            <div class="plyr__video-embed" id="player" style="--plyr-color-main: #00B4BF;">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/3u_vIdnJYLc"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen allow="autoplay"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Video Modal/ Dialog -->
+
+      <!-- Start Poster  -->
+      <div x-show="openPosterModal" @keydown.window.escape="openPosterModal = false"
+        class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:px-0 sm:pb-0 sm:pt-6">
+
+          <!-- Overlay -->
+          <div x-show="openPosterModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+            x-description="Background overlay, show/hide based on modal state."
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="openPosterModal = false"
+            aria-hidden="true">
+          </div>
+
+
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+
+          <!-- Modal -->
+          <div x-show="openPosterModal" x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-description="Modal panel, show/hide based on modal state."
+            class="inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6 -translate-y-10"
+            style="background: rgba( 255, 255, 255, 0.15 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 6.5px );
+            -webkit-backdrop-filter: blur( 6.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );">
+            <img :src="selectedPoster" alt="brosur">
+          </div>
+        </div>
+      </div>
+      <!-- End Poster 1 -->
+
+      <!-- Start Book Consultation Modal/Dialog -->
+      <div x-show="openBookConsultationModal" @keydown.window.escape="openBookConsultationModal = false"
+        class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+          <div x-show="openBookConsultationModal" x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" x-description="Background overlay, show/hide based on modal state."
+            class="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity"
+            @click="openBookConsultationModal = false" aria-hidden="true"></div>
+
+
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+
+          <!-- class="inline-block align-bottom bg-white bg-opacity-50 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl
+                transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6"
+                style="backdrop-filter: blur(15px);" -->
+
+          <div x-show="openBookConsultationModal"
+            x-transition:enter="transform transition ease-in-out duration-300 sm:duration-400"
+            x-transition:enter-start="translate-y-full opacity-0" x-transition:enter-end="translate-y-0 opacity-100"
+            x-transition:leave="transform transition ease-in-out duration-300 sm:duration-400"
+            x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-full opacity-0"
+            x-description="Modal panel, show/hide based on modal state." class="inline-block align-bottom  rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl
+                transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6" style="background: rgba( 255, 255, 255, 0.15 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      backdrop-filter: blur( 6.5px );
+      -webkit-backdrop-filter: blur( 6.5px );
+      border-radius: 10px;
+      border: 1px solid rgba( 255, 255, 255, 0.18 );">
+            <h3
+              class="mb-8 text-xl text-center font-bold py-4 text-gray-700 bg-gray-100 bg-opacity-60 rounded-md shadow-lg">
+              Booking
+              Consultation</h3>
+            <form action="#" class="space-y-4" method="POST">
+              <!-- Email -->
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">
+                  No. WA / Telp
+                </label>
+                <div class="mt-1">
+                  <input id="email" name="email" type="email"
+                    class="appearance-none block w-full px-3 py-2 rounded-md shadow placeholder-gray-400 focus:outline-none focus:ring-[#00B4BF] focus:ring-2 focus:ring-offset-2 focus:border-transparent"
+                    style="background: rgba( 255, 255, 255, 0.3 );
+      backdrop-filter: blur( 6.5px );
+      -webkit-backdrop-filter: blur( 6.5px );
+      border: 1px solid rgba( 255, 255, 255, 0.18 );">
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">
+                  Pilih Waktu
+                </label>
+                <div class="mt-1">
+                  <select id="job" name="job"
+                    class="appearance-none block w-full px-3 py-2 rounded-md shadow placeholder-gray-400 focus:outline-none focus:ring-[#00B4BF] focus:ring-2 focus:ring-offset-2 focus:border-transparent"
+                    style="background: rgba( 255, 255, 255, 0.3 );
+      backdrop-filter: blur( 6.5px );
+      -webkit-backdrop-filter: blur( 6.5px );
+      border: 1px solid rgba( 255, 255, 255, 0.18 );">
+                    <option value="">Pilih</option>
+                    <option value="12.00">12.00</option>
+                    <option value="13.00">13.00</option>
+                    <option value="14.00">14.00</option>
+                    <option value="15.00">15.00</option>
+                    <option value="16.00">16.00</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mt-5 sm:mt-6">
+                <button type="button"
+                  class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-[#00B4BF] shadow text-base font-medium text-white hover:bg-[#116368] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00B4BF] sm:text-sm"
+                  @click="open = false">
+                  Make an Appointment
+                </button>
+              </div>
+            </form>
+            <div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- End Book Consultation Modal/Dialog -->
+
+      <!-- Start Chat Modal/Dialog -->
+      <div x-show="openChatModal" @keydown.window.escape="openChatModal = false"
+        class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+          <!-- Overlay -->
+          <div x-show="openChatModal" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+            x-description="Background overlay, show/hide based on modal state."
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="openChatModal = false"
+            aria-hidden="true">
+          </div>
+
+
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+
+          <!-- Modal -->
+          <div x-show="openChatModal" x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-description="Modal panel, show/hide based on modal state."
+            class="inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-7xl sm:w-full sm:p-6 -translate-y-10"
+            style="background: rgba( 255, 255, 255, 0.15 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 6.5px );
+            -webkit-backdrop-filter: blur( 6.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );">
+
+            <div class="grid grid-cols-3 w-full bg-white rounded-md">
+              <div class="col-span-1 border-r border-gray-200">
+                <!-- Chat list header -->
+                <div class="py-2 px-4 border-b border-gray-200 h-12 flex items-center">
+                  <h3 class="text-xl font-medium text-gray-600 mr-20">HEF Chat</h3>
+                </div>
+
+                <!-- Search -->
+                <div class="w-full px-4 py-2 border-b border-gray-200 h-14 bg-gray-100">
+                  <label for="search" class="sr-only">Search</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                        fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <input id="search" name="search"
+                      class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-full leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-[#00B4BF] focus:border-[#00B4BF] sm:text-sm"
+                      placeholder="Search" type="search">
+                  </div>
+                </div>
+
+                <!-- Chat list -->
+                <ul class="divide-y divide-gray-200 h-full max-h-[500px] overflow-auto">
+                  <li class="group cursor-pointer">
+                    <div class="flex space-x-3 px-4 group-hover:bg-gray-100 py-4">
+                      <img class="h-10 w-10 rounded-full"
+                        src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&h=256&q=80"
+                        alt="John Doe">
+                      <div class="flex-1 space-y-1">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">John Doe</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-500 line-clamp-2">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non. Quis, vitae iure quae reprehenderit
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="group cursor-pointer">
+                    <div class="flex space-x-3 px-4 group-hover:bg-gray-100 py-4">
+                      <img class="h-10 w-10 rounded-full"
+                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80"
+                        alt="Jane Doe">
+                      <div class="flex-1 space-y-1">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">Jane Doe</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-500 line-clamp-2">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non. Quis, vitae iure quae reprehenderit
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="group cursor-pointer">
+                    <div class="flex space-x-3 px-4 group-hover:bg-gray-100 py-4">
+                      <img class="h-10 w-10 rounded-full"
+                        src="https://images.unsplash.com/photo-1615813967515-e1838c1c5116?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&h=256&q=80"
+                        alt="Albert">
+                      <div class="flex-1 space-y-1">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">Albert</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-500 line-clamp-2">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non. Quis, vitae iure quae reprehenderit
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="group cursor-pointer">
+                    <div class="flex space-x-3 px-4 group-hover:bg-gray-100 py-4">
+                      <img class="h-10 w-10 rounded-full"
+                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&h=256&q=80"
+                        alt="Emma">
+                      <div class="flex-1 space-y-1">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">Emma</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-500 line-clamp-2">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non. Quis, vitae iure quae reprehenderit
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="group cursor-pointer">
+                    <div class="flex space-x-3 px-4 group-hover:bg-gray-100 py-4">
+                      <img class="h-10 w-10 rounded-full"
+                        src="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80"
+                        alt="Bob">
+                      <div class="flex-1 space-y-1">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">Bob</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-500 line-clamp-2">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non. Quis, vitae iure quae reprehenderit
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="group cursor-pointer">
+                    <div class="flex space-x-3 px-4 group-hover:bg-gray-100 py-4">
+                      <img class="h-10 w-10 rounded-full"
+                        src="https://images.unsplash.com/photo-1546820389-44d77e1f3b31?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80"
+                        alt="andrew">
+                      <div class="flex-1 space-y-1">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">Andrew</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-500 line-clamp-2">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non. Quis, vitae iure quae reprehenderit
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+
+                  <!-- More items... -->
+                </ul>
+              </div>
+              <div class="col-span-2">
+                <!-- Chat buddy name -->
+                <div class="py-2 px-4 border-b border-gray-200 h-12 flex items-center space-x-3">
+                  <img class="h-8 w-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&h=256&q=80"
+                    alt="">
+                  <h3 class="text-xl font-medium text-gray-600 mr-20">John Doe</h3>
+                </div>
+
+                <!-- Message Area -->
+                <div class="chat-bg max-h-[500px] overflow-auto flex-shrink">
+                  <ul class="px-4 py-2 w-full flex flex-col space-y-2 items-start">
+                    <!-- Chat buddy -->
+                    <li class="group cursor-pointer max-w-[60%]">
+                      <div class="flex-1 space-y-0.5 bg-gray-100 rounded-md shadow px-3 py-2">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">John Doe</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-700">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non.
+                        </p>
+                      </div>
+                    </li>
+
+                    <!-- You -->
+                    <li class="group cursor-pointer max-w-[60%] self-end">
+                      <div class="flex-1 space-y-0.5 bg-[#C7FCFF] rounded-md shadow px-3 py-2">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">You</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-700">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non.
+                        </p>
+                      </div>
+                    </li>
+
+                    <!-- Chat buddy -->
+                    <li class="group cursor-pointer max-w-[60%]">
+                      <div class="flex-1 space-y-0.5 bg-gray-100 rounded-md shadow px-3 py-2">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">John Doe</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-700">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non.
+                        </p>
+                      </div>
+                    </li>
+
+                    <!-- You -->
+                    <li class="group cursor-pointer max-w-[60%] self-end">
+                      <div class="flex-1 space-y-0.5 bg-[#C7FCFF] rounded-md shadow px-3 py-2">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">You</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-700">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                        </p>
+                      </div>
+                    </li>
+
+                    <!-- Chat buddy -->
+                    <li class="group cursor-pointer max-w-[60%]">
+                      <div class="flex-1 space-y-0.5 bg-gray-100 rounded-md shadow px-3 py-2">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">John Doe</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-700">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non.
+                        </p>
+                      </div>
+                    </li>
+
+                    <!-- You -->
+                    <li class="group cursor-pointer max-w-[60%] self-end">
+                      <div class="flex-1 space-y-0.5 bg-[#C7FCFF] rounded-md shadow px-3 py-2">
+                        <div class="flex items-center justify-between">
+                          <h3 class="text-sm font-medium">You</h3>
+                          <p class="text-sm text-gray-500">1h</p>
+                        </div>
+                        <p class="text-sm text-gray-700">Lorem ipsum dolor sit amet consectetur,
+                          adipisicing elit.
+                          Doloribus exercitationem libero aspernatur non. Quis, vitae iure quae reprehenderit
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Chat input -->
+                <form id="chat-form" class="w-full px-4 py-2 border-t border-gray-200 bg-gray-200 flex space-x-2 flex-1"
+                  onsubmit="console.log('hit')">
+                  <!-- image preview -->
+                  <div class="flex-1">
+                    <div
+                      class="mb-1 overflow-hidden flex justify-center w-52 rounded-md shadow relative group cursor-pointer">
+                      <img id="previewImage">
+                      <div
+                        onclick="document.getElementById('imageFile').value = ''; document.getElementById('previewImage').src='';"
+                        class="hidden absolute inset-0  items-center justify-center group-hover:flex bg-black bg-opacity-30 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20"
+                          fill="currentColor">
+                          <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                        </svg><span class="sr-only">Delete</span>
+                      </div>
+                    </div>
+                    <label for="message" class="sr-only">Message</label>
+                    <div>
+                      <div id="message"
+                        class="px-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-[#00B4BF] focus:border-[#00B4BF] sm:text-sm"
+                        role="textbox" contenteditable style="resize: none;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex space-x-1 items-end pb-0.5">
+                    <!-- Upload File -->
+                    <div>
+                      <label for="imageFile"
+                        class="text-gray-500 p-1.5 rounded-full bg-white border border-gray-300 shadow flex items-center justify-center cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                        </svg>
+                      </label>
+                      <input class="hidden" type="file" id="imageFile"
+                        onchange="document.getElementById('previewImage').src = window.URL.createObjectURL(this.files[0])">
+
+                    </div>
+                    <!-- Send Message -->
+                    <button class="text-white p-1.5 rounded-full bg-[#00B4BF] border border-gray-300 shadow flex items-center
+                    justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rotate-45"
+                        viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                          d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                      </svg>
+                      <span class="sr-only">Send</span>
+                    </button>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- End Chat Modal/ Dialog -->
+    </main>
+
+    <!-- ###### Buttons ######-->
+    <!-- Button Banner 1 -->
+    <button
+      class="btn-1 bg-[#A6FAFF] bg-opacity-65 p-1.5 rounded-full text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
+        class="w-8 h-8" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M4.75 16L7.49619 12.5067C8.2749 11.5161 9.76453 11.4837 10.5856 12.4395L13 15.25M10.915 12.823C11.9522 11.5037 13.3973 9.63455 13.4914 9.51294C13.4947 9.50859 13.4979 9.50448 13.5013 9.50017C14.2815 8.51598 15.7663 8.48581 16.5856 9.43947L19 12.25M6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V6.75C19.25 5.64543 18.3546 4.75 17.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25Z" />
+      </svg>
+      <span class="sr-only">Open Banner 1</span></button>
+
+    <!-- Button Banner 2 -->
+    <button
+      class="btn-2 bg-[#A6FAFF] bg-opacity-65  p-1.5 rounded-full text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
+        class="w-8 h-8" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M4.75 16L7.49619 12.5067C8.2749 11.5161 9.76453 11.4837 10.5856 12.4395L13 15.25M10.915 12.823C11.9522 11.5037 13.3973 9.63455 13.4914 9.51294C13.4947 9.50859 13.4979 9.50448 13.5013 9.50017C14.2815 8.51598 15.7663 8.48581 16.5856 9.43947L19 12.25M6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V6.75C19.25 5.64543 18.3546 4.75 17.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25Z" />
+      </svg>
+      <span class="sr-only">Open Banner 2</span></button>
+
+    <!-- Button Poster 1 -->
+    <button @click="openPosterModal = true; selectedPoster = posters[0]"
+      class="btn-3 bg-[#A6FAFF] bg-opacity-65  p-1.5 rounded-full text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
+        class="w-8 h-8" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M4.75 16L7.49619 12.5067C8.2749 11.5161 9.76453 11.4837 10.5856 12.4395L13 15.25M10.915 12.823C11.9522 11.5037 13.3973 9.63455 13.4914 9.51294C13.4947 9.50859 13.4979 9.50448 13.5013 9.50017C14.2815 8.51598 15.7663 8.48581 16.5856 9.43947L19 12.25M6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V6.75C19.25 5.64543 18.3546 4.75 17.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25Z" />
+      </svg>
+      <span class="sr-only">Open Poster 1</span></button>
+
+    <!-- Button Poster 2 -->
+    <button @click="openPosterModal = true; selectedPoster = posters[1]"
+      class="btn-4 bg-[#A6FAFF] bg-opacity-65  p-1.5 rounded-full text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
+        class="w-8 h-8" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M4.75 16L7.49619 12.5067C8.2749 11.5161 9.76453 11.4837 10.5856 12.4395L13 15.25M10.915 12.823C11.9522 11.5037 13.3973 9.63455 13.4914 9.51294C13.4947 9.50859 13.4979 9.50448 13.5013 9.50017C14.2815 8.51598 15.7663 8.48581 16.5856 9.43947L19 12.25M6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V6.75C19.25 5.64543 18.3546 4.75 17.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25Z" />
+      </svg>
+      <span class="sr-only">Open Poster 2</span></button>
+
+    <!-- Button Poster 3 -->
+    <button @click="openPosterModal = true; selectedPoster = posters[2]"
+      class="btn-5 bg-[#A6FAFF] bg-opacity-65  p-1.5 rounded-full text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
+        class="w-8 h-8" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M4.75 16L7.49619 12.5067C8.2749 11.5161 9.76453 11.4837 10.5856 12.4395L13 15.25M10.915 12.823C11.9522 11.5037 13.3973 9.63455 13.4914 9.51294C13.4947 9.50859 13.4979 9.50448 13.5013 9.50017C14.2815 8.51598 15.7663 8.48581 16.5856 9.43947L19 12.25M6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V6.75C19.25 5.64543 18.3546 4.75 17.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25Z" />
+      </svg>
+      <span class="sr-only">Open Poster 3</span></button>
+
+    <!-- Button Poster 4 -->
+    <button @click="openPosterModal = true; selectedPoster = posters[3]"
+      class="btn-6 bg-[#A6FAFF] bg-opacity-65  p-1.5 rounded-full text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
+        class="w-8 h-8" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M4.75 16L7.49619 12.5067C8.2749 11.5161 9.76453 11.4837 10.5856 12.4395L13 15.25M10.915 12.823C11.9522 11.5037 13.3973 9.63455 13.4914 9.51294C13.4947 9.50859 13.4979 9.50448 13.5013 9.50017C14.2815 8.51598 15.7663 8.48581 16.5856 9.43947L19 12.25M6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V6.75C19.25 5.64543 18.3546 4.75 17.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25Z" />
+      </svg>
+      <span class="sr-only">Open Poster 4</span></button>
+
+    <!-- Button Poster 5 -->
+    <button @click="openPosterModal = true; selectedPoster = posters[4]"
+      class="btn-7 bg-[#A6FAFF] bg-opacity-65  p-1.5 rounded-full text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
+        class="w-8 h-8" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M4.75 16L7.49619 12.5067C8.2749 11.5161 9.76453 11.4837 10.5856 12.4395L13 15.25M10.915 12.823C11.9522 11.5037 13.3973 9.63455 13.4914 9.51294C13.4947 9.50859 13.4979 9.50448 13.5013 9.50017C14.2815 8.51598 15.7663 8.48581 16.5856 9.43947L19 12.25M6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V6.75C19.25 5.64543 18.3546 4.75 17.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25Z" />
+      </svg>
+      <span class="sr-only">Open Poster 5</span></button>
+
+    <!-- Button Booking Consultation -->
+    <button @click="openBookConsultationModal = true"
+      class="btn-8 bg-[#A6FAFF] bg-opacity-65  p-1.5 rounded-full text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
+        class="w-10 h-10" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M8.89286 4.75H6.06818C5.34017 4.75 4.75 5.34017 4.75 6.06818C4.75 13.3483 10.6517 19.25 17.9318 19.25C18.6598 19.25 19.25 18.6598 19.25 17.9318V15.1071L16.1429 13.0357L14.5317 14.6468C14.2519 14.9267 13.8337 15.0137 13.4821 14.8321C12.8858 14.524 11.9181 13.9452 10.9643 13.0357C9.98768 12.1045 9.41548 11.1011 9.12829 10.494C8.96734 10.1537 9.06052 9.76091 9.32669 9.49474L10.9643 7.85714L8.89286 4.75Z" />
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M14 5.02936C16.4312 5.72562 18.3396 7.65944 19 10.1056" />
+      </svg><span class="sr-only">Open Booking Consultation</span></button></button>
+
+    <!-- Zoom meeting link button -->
+    <a href="https://zoom.us/" target="_blank"
+      class="btn-9 bg-[#A6FAFF] bg-opacity-65  p-1.5 rounded-full text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
+        class="w-10 h-10" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path fill="currentColor"
+          d="M15.1141 9.35688C14.7589 9.56999 14.6438 10.0307 14.8569 10.3859C15.07 10.7411 15.5307 10.8562 15.8859 10.6431L15.1141 9.35688ZM19.25 7.75H20C20 7.4798 19.8547 7.23048 19.6195 7.09735C19.3844 6.96422 19.0958 6.96786 18.8641 7.10688L19.25 7.75ZM19.25 16.25L18.8641 16.8931C19.0958 17.0321 19.3844 17.0358 19.6195 16.9026C19.8547 16.7695 20 16.5202 20 16.25H19.25ZM15.8859 13.3569C15.5307 13.1438 15.07 13.2589 14.8569 13.6141C14.6438 13.9693 14.7589 14.43 15.1141 14.6431L15.8859 13.3569ZM15.8859 10.6431L19.6359 8.39312L18.8641 7.10688L15.1141 9.35688L15.8859 10.6431ZM18.5 7.75V16.25H20V7.75H18.5ZM19.6359 15.6069L15.8859 13.3569L15.1141 14.6431L18.8641 16.8931L19.6359 15.6069ZM6.75 7.5H13.25V6H6.75V7.5ZM14.5 8.75V15.25H16V8.75H14.5ZM13.25 16.5H6.75V18H13.25V16.5ZM5.5 15.25V8.75H4V15.25H5.5ZM6.75 16.5C6.05964 16.5 5.5 15.9404 5.5 15.25H4C4 16.7688 5.23122 18 6.75 18V16.5ZM14.5 15.25C14.5 15.9404 13.9404 16.5 13.25 16.5V18C14.7688 18 16 16.7688 16 15.25H14.5ZM13.25 7.5C13.9404 7.5 14.5 8.05964 14.5 8.75H16C16 7.23122 14.7688 6 13.25 6V7.5ZM6.75 6C5.23122 6 4 7.23122 4 8.75H5.5C5.5 8.05964 6.05964 7.5 6.75 7.5V6Z" />
+      </svg>
+      <span class="sr-only">Link zoom meeting</span></a>
+
+    <!-- Button Open Video -->
+    <button @click="openVideoModal = true"
+      class="btn-10 bg-[#A6FAFF] bg-opacity-65  p-1.5 rounded-full text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
+        class="w-14 h-14 pl-1" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M18.25 12L5.75 5.75V18.25L18.25 12Z" />
+      </svg>
+      <span class="sr-only">Open Video</span></button>
+  </div>
+
+  <!-- Script -->
+  <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+  <script>const player = new Plyr('#player');</script>
+  <script>
+
+    const posters = [
+      'assets/brosur1.jpg',
+      'assets/brosur2.jpg',
+      'assets/brosur3.jpg',
+      'assets/brosur4.jpg',
+      'assets/brosur5.jpg',
+    ];
+
+    // Chat
+    const chatForm = document.getElementById('chat-form');
+    const message = document.getElementById('message');
+    const imageFile = document.getElementById('imageFile');
+
+    chatForm.onsubmit = (e) => {
+      e.preventDefault();
+      console.log({ e });
+      console.log({ message: message.innerText })
+      console.log({ imageFile: imageFile.files[0] })
+    }
+  </script>
+</body>
+
+</html>
