@@ -1355,6 +1355,10 @@ select {
   height: 2.25rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .max-h-0 {
   max-height: 0px;
 }
@@ -1489,6 +1493,26 @@ select {
 
 .w-52 {
   width: 13rem;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.w-\[10\%\] {
+  width: 10%;
+}
+
+.w-80 {
+  width: 20rem;
+}
+
+.w-\[200px\] {
+  width: 200px;
+}
+
+.w-\[400px\] {
+  width: 400px;
 }
 
 .min-w-\[250px\] {
@@ -1711,6 +1735,26 @@ select {
   transform: var(--tw-transform);
 }
 
+.skew-x-1 {
+  --tw-skew-x: 1deg;
+  transform: var(--tw-transform);
+}
+
+.skew-y-12 {
+  --tw-skew-y: 12deg;
+  transform: var(--tw-transform);
+}
+
+.skew-y-6 {
+  --tw-skew-y: 6deg;
+  transform: var(--tw-transform);
+}
+
+.-skew-y-12 {
+  --tw-skew-y: -12deg;
+  transform: var(--tw-transform);
+}
+
 .scale-95 {
   --tw-scale-x: .95;
   --tw-scale-y: .95;
@@ -1794,6 +1838,23 @@ select {
 .animate-ping {
   -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
           animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
 }
 
 .cursor-pointer {
@@ -2308,6 +2369,22 @@ select {
   --tw-bg-opacity: 0.3;
 }
 
+.bg-opacity-25 {
+  --tw-bg-opacity: 0.25;
+}
+
+.bg-opacity-0 {
+  --tw-bg-opacity: 0;
+}
+
+.bg-opacity-70 {
+  --tw-bg-opacity: 0.7;
+}
+
+.bg-opacity-100 {
+  --tw-bg-opacity: 1;
+}
+
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -2464,6 +2541,36 @@ select {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .pt-4 {
@@ -3092,6 +3199,11 @@ select {
   color: rgba(0, 180, 191, var(--tw-text-opacity));
 }
 
+.hover\:text-gray-50:hover {
+  --tw-text-opacity: 1;
+  color: rgba(249, 250, 251, var(--tw-text-opacity));
+}
+
 .hover\:shadow-none:hover {
   --tw-shadow: 0 0 #0000;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
@@ -3311,6 +3423,14 @@ select {
 
   .sm\:max-w-2xl {
     max-width: 42rem;
+  }
+
+  .sm\:max-w-4xl {
+    max-width: 56rem;
+  }
+
+  .sm\:max-w-5xl {
+    max-width: 64rem;
   }
 
   .sm\:translate-y-0 {
