@@ -39,13 +39,27 @@
       top: 42%;
       left: 6.75%;
       perspective: 1000px;
-      width: 270px;
-      height: 165px;
+      width: 14%;
+      height: 17%;
     }
+
 
     .btn-1 a {
       transform: rotateY(35deg) rotateX(-5deg) rotateZ(-6deg);
       animation: fullpulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .btn-1 svg {
+      width: 20%;
+      height: auto;
+    }
+
+    .btn-1 span {
+      font-size: 2vw;
+    }
+
+    .btn-1:hover a {
+      animation: none;
     }
 
     .btn-2 {
@@ -53,13 +67,26 @@
       top: 42%;
       right: 7.6%;
       perspective: 1000px;
-      width: 270px;
-      height: 165px;
+      width: 14%;
+      height: 17%;
     }
 
     .btn-2 a {
       transform: rotateY(-35deg) rotateX(-5deg) rotateZ(6deg);
       animation: fullpulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .btn-2 svg {
+      width: 20%;
+      height: auto;
+    }
+
+    .btn-2 span {
+      font-size: 2vw;
+    }
+
+    .btn-2:hover a {
+      animation: none;
     }
 
     .btn-3 {
@@ -68,8 +95,45 @@
       left: 50%;
       transform: translateX(-50%);
       perspective: 1000px;
-      /* transform: rotateZ(-10deg) skew(10deg); */
-      /* transform: rotateX(10deg); */
+      width: 15.5%;
+      height: 19.5%;
+    }
+
+    .btn-3 svg {
+      width: 40%;
+      height: auto;
+    }
+
+    .advertisement {
+      position: absolute;
+      top: 31%;
+      left: 22.5%;
+      perspective: 600px;
+      width: 19.5%;
+      height: 25%;
+    }
+
+    .advertisement div {
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      transform: rotateY(15deg) rotateX(-3deg) rotateZ(-2deg);
+    }
+
+    .advertisement2 {
+      position: absolute;
+      top: 31%;
+      right: 22.5%;
+      perspective: 600px;
+      width: 19.5%;
+      height: 25%;
+    }
+
+    .advertisement2 div {
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      transform: rotateY(-15deg) rotateX(-3deg) rotateZ(2deg);
     }
 
 
@@ -133,15 +197,17 @@
               </div>
               <div class="hidden lg:block lg:ml-10">
                 <div class="flex space-x-4">
-                  <a href="dashboard-visitor.html" class="text-[#00B4BF] rounded-md px-3 font-medium">
-                    Dashboard
+                  <a href="main-hall.html" class="text-[#00B4BF] rounded-md px-3 font-medium">
+                    Main Hall
                   </a>
 
+                  <!-- TODO Seminar Hall Link -->
                   <a href="#" class="text-gray-300 hover:text-white rounded-md px-3 font-medium">
                     Seminar
                   </a>
 
-                  <a href="exhibitor-hall.html" class="text-gray-300 hover:text-white rounded-md px-3 font-medium">
+                  <!-- TODO Change to exhibitor hall -->
+                  <a href="virtual-booth-5.html" class="text-gray-300 hover:text-white rounded-md px-3 font-medium">
                     Exhibitors
                   </a>
 
@@ -238,14 +304,16 @@
         <div x-show="openMobileMenu" class="lg:hidden bg-white bg-opacity-50 shadow-md rounded-b-lg"
           style="backdrop-filter: blur(20px);" id="mobile-menu">
           <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="#" class="text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
-              Dashboard
+            <a href="main-hall.html" class="text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
+              Main Hall
             </a>
 
+            <!-- TODO Seminar Hall Link -->
             <a href="#" class="text-gray-900 hover:text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
               Seminar
             </a>
-            <a href="exhibitor-hall.html"
+            <!-- TODO Change to Exhibitor Hall -->
+            <a href="virtual-booth-5.html"
               class="text-gray-900 hover:text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
               Exhibitors
             </a>
@@ -791,9 +859,10 @@
     </main>
 
     <!-- ###### Links ######-->
+    <!-- TODO Change to Exhibitor Hall -->
     <!-- Link Exhibition Hall -->
     <div class="btn-1">
-      <a href="#"
+      <a href="virtual-booth-5.html"
         class="h-full bg-[#A6FAFF] bg-opacity-100 w-full rounded-md text-[#00B4BF] border-[4px] border-[#00B4BF] flex items-center justify-center space-x-2"><svg
           aria-hidden="true" focusable="false" data-prefix="fas" data-icon="door-open"
           class="svg-inline--fa fa-door-open fa-w-20 w-8 h-8" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -805,36 +874,52 @@
         <span class="text-2xl font-bold">Enter</span></a>
     </div>
 
-    <!-- Link Seminar Hall -->
+    <!-- TODO Link Seminar Hall -->
     <div class="btn-2">
       <a href="#"
         class=" h-full bg-[#A6FAFF] bg-opacity-100 w-full rounded-md text-[#00B4BF] border-[4px] border-[#00B4BF] flex items-center justify-center space-x-2""><svg
           aria-hidden=" true" focusable="false" data-prefix="fas" data-icon="door-open"
-        class="svg-inline--fa fa-door-open fa-w-20 w-8 h-8" role="img" xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 640 512">
+        class="svg-inline--fa fa-door-open fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
         <path fill="currentColor"
           d="M624 448h-80V113.45C544 86.19 522.47 64 496 64H384v64h96v384h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM312.24 1.01l-192 49.74C105.99 54.44 96 67.7 96 82.92V448H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h336V33.18c0-21.58-19.56-37.41-39.76-32.17zM264 288c-13.25 0-24-14.33-24-32s10.75-32 24-32 24 14.33 24 32-10.75 32-24 32z">
         </path>
         </svg>
-        <span class="text-2xl font-bold">Enter</span>
+        <span class="font-bold">Enter</span>
       </a>
     </div>
 
     <!-- Open Video Button -->
     <button @click="openVideoModal = true"
       style="background-image: url('https://i.ytimg.com/vi/3u_vIdnJYLc/maxresdefault.jpg'); background-position: center; background-size: cover;"
-      class="btn-3 bg-opacity-15  py-10 px-24 rounded-md text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse"><svg
-        class="w-24 h-24 pl-1" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      class="btn-3 bg-opacity-15 rounded-md text-[#00B4BF] border-[4px] border-[#00B4BF] animate-pulse flex items-center justify-center"><svg
+        class="pl-1" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M18.25 12L5.75 5.75V18.25L18.25 12Z" />
       </svg>
       <span class="sr-only">Open Video</span></button>
+
+    <!-- Advertisement 1 -->
+    <div class="advertisement">
+      <div>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/3u_vIdnJYLc?autoplay=1&mute=1&loop=1"
+          title="YouTube video player" frameborder="0" allow="autoplay; loop; fullscreen"></iframe>
+      </div>
+    </div>
+
+    <!-- Advertisement 2 -->
+    <div class=" advertisement2">
+      <div>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/3u_vIdnJYLc?autoplay=1&mute=1&loop=1"
+          title="YouTube video player" frameborder="0" allow="autoplay; loop; fullscreen"></iframe>
+      </div>
+    </div>
   </div>
 
   <!-- Script -->
   <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
-  <script>const player = new Plyr('#player');</script>
+  <!-- <script>const player = new Plyr('#player');</script> -->
   <script>
+    const player = new Plyr('#player');
 
     const posters = [
       'assets/brosur1.jpg',
