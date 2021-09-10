@@ -86,6 +86,7 @@
   <!-- Header -->
   <header
     class="sticky z-40 md:z-auto top-0 sm:top-auto bg-white sm:bg-transparent flex sm:flex h-[50px] sm:h-[70px] max-w-7xl mx-auto px-4 md:px-2 items-center justify-between">
+    <!-- Logo -->
     <div class="flex items-center space-x-2 sm:space-x-3">
       <img class="w-10 h-10 sm:w-14 sm:h-14" src="assets/ptpi.png" alt="Logo PTPI">
       <div>
@@ -97,7 +98,21 @@
         </div>
       </div>
     </div>
-    <div class="block md:hidden">
+
+    <!-- Select Language -->
+    <div>
+      <label for="language" class="sr-only">
+        Select Language
+      </label>
+      <select name="Language" id="language"
+        class="block appearance-none w-full pl-3 pr-8 py-1.5 sm:py-2 border  rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#00B4BF] focus:border-[#00B4BF] text-xs sm:text-sm border-gray-300">
+        <option value="EN" selected>English</option>
+        <option value="ID">Indonesia</option>
+      </select>
+    </div>
+
+    <!-- Menu Button -->
+    <div class="block md:hidden ml-2">
       <button @click="openMobileMenu = true" type="button"
         class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#116368]"
         aria-expanded="false">
@@ -656,20 +671,20 @@
     <h2 class="text-3xl lg:text-4xl font-bold text-gray-700 text-center lg:text-left px-2 mb-6">Programs
     </h2>
     <!-- Programs 1 -->
-    <div class="lg:mt-4 grid lg:grid-cols-2 px-2 gap-14 items-center mb-10 lg:mb-20"">
-      <div class=" rounded-xl overflow-hidden mt-2">
-      <img src="assets/seminar-room.jpeg" alt="Webinar Series">
-    </div>
-    <div>
-      <h3 class="text-xl lg:text-2xl font-bold text-gray-700 text-center lg:text-left px-2 mb-2">Webinar Series
-      </h3>
-      <h4 class="px-2 mb-4 text-gray-500 italic text-xl">"Meet and Consult with Exhibitors"</h4>
-      <p class="max-w-5xl mx-auto text-lg leading-relaxed lg:text-xl lg:leading-loose text-gray-600 px-2">
-        Opportunity to meet exhibitors in the Link & Match system to discuss collaborations and solutions related to 6
-        areas of
-        hospital engineering
-      </p>
-    </div>
+    <div class="lg:mt-4 grid lg:grid-cols-2 px-2 gap-14 items-center mb-10 lg:mb-20">
+      <div class="rounded-xl overflow-hidden mt-2 shadow-2xl">
+        <img src="assets/seminar-room.jpeg" alt="Webinar Series">
+      </div>
+      <div>
+        <h3 class="text-xl lg:text-2xl font-bold text-gray-700 text-center lg:text-left px-2 mb-2">Webinar Series
+        </h3>
+        <h4 class="px-2 mb-4 text-gray-500 italic text-xl">"Meet and Consult with Exhibitors"</h4>
+        <p class="max-w-5xl mx-auto text-lg leading-relaxed lg:text-xl lg:leading-loose text-gray-600 px-2">
+          Opportunity to meet exhibitors in the Link & Match system to discuss collaborations and solutions related to 6
+          areas of
+          hospital engineering
+        </p>
+      </div>
     </div>
 
     <!-- Programs 2 -->
@@ -687,14 +702,14 @@
           7900 IAHE members.
         </p>
       </div>
-      <div class="rounded-xl overflow-hidden mt-2">
+      <div class="rounded-xl overflow-hidden mt-2 shadow-2xl">
         <img src="assets/virtual-exhibition.jpeg" alt="Virtual Exhibition">
       </div>
     </div>
 
     <!-- Programs 3 -->
     <div class="lg:mt-4 grid lg:grid-cols-2 px-2 gap-14 items-center mb-10 lg:mb-20">
-      <div class="rounded-xl mt-2 overflow-hidden">
+      <div class="rounded-xl mt-2 overflow-hidden shadow-2xl">
         <img
           src="https://images.unsplash.com/photo-1586985564150-11ee04838034?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2030&q=80"
           alt="Consultation Room">
