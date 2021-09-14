@@ -15,8 +15,12 @@
       padding: 0;
     }
 
+    [x-cloak] {
+      display: none !important;
+    }
+
     .virtual-booth {
-      background-image: url('./assets/virtual-booth-5-poster.jpg');
+      background-image: url('./assets/virtual-booth-5.jpg');
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -37,8 +41,8 @@
     .btn-1-wrapper {
       perspective: 1000px;
       position: absolute;
-      top: 49.5%;
-      left: 13.25%;
+      top: 56.5%;
+      left: 15.5%;
       width: 5.75%;
       height: 26.5%;
     }
@@ -62,8 +66,8 @@
     .btn-2-wrapper {
       perspective: 1000px;
       position: absolute;
-      top: 49.5%;
-      left: 21.5%;
+      top: 56.5%;
+      left: 23.5%;
       width: 5.5%;
       height: 25.75%;
     }
@@ -71,7 +75,7 @@
     .btn-2 {
       width: 100%;
       height: 100%;
-      transform: rotateY(13deg) rotateZ(-1deg);
+      transform: rotateY(7deg) rotateZ(-1deg);
       animation: fullpulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
 
@@ -87,16 +91,16 @@
     .btn-3-wrapper {
       perspective: 1000px;
       position: absolute;
-      top: 37%;
-      left: 29.75%;
-      width: 8.5%;
+      top: 44.5%;
+      left: 31.5%;
+      width: 7.5%;
       height: 22%;
     }
 
     .btn-3 {
       width: 100%;
       height: 100%;
-      transform: rotateY(22deg);
+      transform: rotateY(7deg);
       animation: fullpulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
 
@@ -112,16 +116,16 @@
     .btn-4-wrapper {
       perspective: 1000px;
       position: absolute;
-      top: 37.5%;
-      left: 38.25%;
-      width: 8%;
-      height: 21%;
+      top: 45%;
+      left: 39.5%;
+      width: 7.5%;
+      height: 20.5%;
     }
 
     .btn-4 {
       width: 100%;
       height: 100%;
-      transform: rotateY(22deg);
+      transform: rotateY(7deg);
       animation: fullpulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
 
@@ -137,16 +141,16 @@
     .btn-5-wrapper {
       perspective: 1000px;
       position: absolute;
-      top: 38%;
-      left: 57.5%;
-      width: 8.5%;
-      height: 22%;
+      top: 46%;
+      left: 58.5%;
+      width: 7%;
+      height: 21%;
     }
 
     .btn-5 {
       width: 100%;
       height: 100%;
-      transform: rotateY(-36deg);
+      transform: rotateY(-16deg);
       animation: fullpulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
 
@@ -162,16 +166,16 @@
     .btn-6-wrapper {
       perspective: 1000px;
       position: absolute;
-      top: 37%;
-      left: 65.5%;
-      width: 8.5%;
+      top: 44.5%;
+      left: 65.75%;
+      width: 7.5%;
       height: 24%;
     }
 
     .btn-6 {
       width: 100%;
       height: 100%;
-      transform: rotateY(-30deg);
+      transform: rotateY(-12deg);
       animation: fullpulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
 
@@ -187,10 +191,10 @@
     .btn-7-wrapper {
       perspective: 1000px;
       position: absolute;
-      top: 35.75%;
-      left: 73.75%;
-      width: 9.25%;
-      height: 26.5%;
+      top: 43.75%;
+      left: 73.25%;
+      width: 8.75%;
+      height: 25.5%;
     }
 
     .btn-7 {
@@ -211,9 +215,9 @@
 
     .btn-8 {
       position: absolute;
-      top: 65%;
-      left: 33.5%;
-      width: 3%;
+      top: 71%;
+      left: 35%;
+      width: 3.5%;
       aspect-ratio: 1 / 1;
     }
 
@@ -229,8 +233,8 @@
     .btn-9-wrapper {
       perspective: 1000px;
       position: absolute;
-      top: 53%;
-      left: 48.5%;
+      top: 60%;
+      left: 49.1%;
       width: 5.75%;
       height: 7.5%;
     }
@@ -252,8 +256,8 @@
 
     .btn-10 {
       position: absolute;
-      top: 15.5%;
-      left: 46%;
+      top: 24%;
+      left: 46.5%;
       width: 6%;
       aspect-ratio: 1 / 1;
     }
@@ -305,7 +309,7 @@
   class="2xl:overflow-y-scroll">
 
   <!-- Chat Button -->
-  <div class="absolute right-4 lg:right-10 bottom-4 lg:bottom-10 z-10" style="backdrop-filter: (4px);">
+  <div class="absolute right-4 lg:right-6 bottom-4 lg:bottom-6 z-10" style="backdrop-filter: (4px);">
     <button @click="openChatModal = true"
       class="animate-bounce bg-white bg-opacity-50 hover:bg-opacity-80 transition-all duration-200 px-2 lg:px-3 py-4 lg:py-6 rounded-full shadow-2xl">
       <img class="w-14 lg:w-20" src="assets/chat-icon.png" alt="chat-icon">
@@ -356,14 +360,12 @@
             Main Hall
           </a>
 
-          <!-- TODO Seminar Hall -->
           <a href="seminar-room.html"
             class="text-gray-900 hover:text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
             Seminar
           </a>
 
-          <!-- TODO Change to exhibitor hall -->
-          <a href="virtual-booth-5.html"
+          <a href="exhibitor-list.html"
             class="text-gray-900 hover:text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
             Exhibitors
           </a>
@@ -412,7 +414,7 @@
     <!-- Header / Navbar (hidden in small screen) -->
     <header class="hidden lg:block bg-transparent sticky z-10">
       <nav x-data="{openProfileDropdown: false, openMobileMenu: false}"
-        class="bg-transparent px-1.5 lg:px-2 py-1.5 2xl:py-2">
+        class="bg-transparent px-1.5 lg:px-2 py-1.5 xl:py-2">
         <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 bg-white rounded-t-lg lg:rounded-b-lg bg-opacity-50 shadow"
           style="backdrop-filter: blur(20px);">
           <div class="relative h-12 2xl:h-16 flex items-center justify-between">
@@ -427,13 +429,12 @@
                     Main Hall
                   </a>
 
-                  <!-- TODO Seminar hall -->
                   <a href="seminar-room.html" class="text-gray-700 hover:text-gray-900 rounded-md px-3 font-medium">
                     Seminar
                   </a>
 
-                  <!-- TODO Change to Exhibitor hall -->
-                  <a href="virtual-booth-5.html" class="text-[#00B4BF] rounded-md px-3 font-medium">
+
+                  <a href="exhibitor-list.html" class="text-[#00B4BF] rounded-md px-3 font-medium">
                     Exhibitors
                   </a>
 
@@ -475,7 +476,7 @@
                     </button>
                   </div>
 
-                  <div x-show="openProfileDropdown" x-transition:enter="transition ease-out duration-100"
+                  <div x-cloak x-show="openProfileDropdown" x-transition:enter="transition ease-out duration-100"
                     x-transition:enter-start="transform opacity-0 scale-95"
                     x-transition:enter-end="transform opacity-100 scale-100"
                     x-transition:leave="transition ease-in duration-75"
@@ -511,8 +512,7 @@
     <main class="px-1.5 lg:px-2 pb-2 max-w-7xl mx-auto">
       <!-- Back Button -->
       <div class="pt-1">
-        <!-- TODO Change to Exhibitor Hall -->
-        <a href="virtual-booth-5.html"
+        <a href="exhibitor-list.html"
           class="bg-white bg-opacity-50 py-0.5 lg:py-2 pl-1 lg:pl-2 pr-2 lg:pr-3 font-medium rounded-md text-xs sm:text-sm inline-flex items-center space-x-1 group"
           style="background: rgba( 255, 255, 255, 0.3 );
       box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -531,7 +531,7 @@
 
       <!-- ###### Modals ###### -->
       <!-- Start Video Modal/Dialog -->
-      <div x-show="openVideoModal" @keydown.window.escape="openVideoModal = false"
+      <div x-cloak x-show="openVideoModal" @keydown.window.escape="openVideoModal = false"
         class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
@@ -574,7 +574,7 @@
       <!-- End Video Modal/ Dialog -->
 
       <!-- Start Poster  -->
-      <div x-show="openPosterModal" @keydown.window.escape="openPosterModal = false"
+      <div x-cloak x-show="openPosterModal" @keydown.window.escape="openPosterModal = false"
         class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
         <div
           class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:px-0 sm:pb-0 sm:pt-6">
@@ -613,7 +613,7 @@
       <!-- End Poster 1 -->
 
       <!-- Start Book Consultation Modal/Dialog -->
-      <div x-show="openBookConsultationModal" @keydown.window.escape="openBookConsultationModal = false"
+      <div x-cloak x-show="openBookConsultationModal" @keydown.window.escape="openBookConsultationModal = false"
         class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
@@ -703,7 +703,7 @@
       <!-- End Book Consultation Modal/Dialog -->
 
       <!-- Start Chat Modal/Dialog -->
-      <div x-show="openChatModal" @keydown.window.escape="openChatModal = false"
+      <div x-cloak x-show="openChatModal" @keydown.window.escape="openChatModal = false"
         class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
         <div
           class="flex items-end justify-center min-h-screen pb-12 text-center lg:block lg:px-0 lg:py-2 overflow-hidden">
