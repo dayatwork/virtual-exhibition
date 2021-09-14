@@ -70,8 +70,25 @@
           <a href="index.html" class="text-2xl font-bold text-[#00B4BF]">HEF 2021</a>
           <h2 class="text-3xl font-bold">Register as Exhibitor</h2>
         </div>
-        <form action="#" method="POST">
-          <div class="mb-6">
+        <form action="#" method="POST" x-data="{ selectedPage: 'accountInfo'}">
+          <div class="hidden">
+            <nav class="relative z-0 rounded-lg shadow flex divide-x divide-gray-200" aria-label="Tabs">
+              <button type="button" @click="selectedPage = 'accountInfo'"
+                class="text-gray-900 rounded-l-lg  group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
+                <span>Account & Company Info</span>
+                <span aria-hidden="true" class="bg-[#00B4BF] absolute inset-x-0 bottom-0 h-0.5"></span>
+              </button>
+
+              <button type="button" @click="selectedPage = 'packages'"
+                class="text-gray-500 hover:text-gray-700   group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
+                <span>Packages</span>
+                <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+              </button>
+            </nav>
+          </div>
+
+          <!-- Account & Company Info -->
+          <div x-show="selectedPage === 'accountInfo'" class="mb-6">
             <!-- Account Information -->
             <div>
               <div class="relative my-4">
@@ -329,15 +346,195 @@
               </div>
             </div>
 
+            <!-- Next button -->
+            <div class="mt-6">
+              <button type="button" @click="selectedPage = 'packages'"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm font-medium text-white transition-all bg-[#00B4BF] hover:bg-[#063C40] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00B4BF]">
+                Continue
+              </button>
+            </div>
 
           </div>
 
-          <div>
+          <!-- Packages -->
+          <div x-show="selectedPage === 'packages'">
+            <!-- Packages -->
+            <div>
+              <div class="relative my-4">
+                <div class="absolute inset-0 flex items-center">
+                  <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                  <span class="px-2 bg-white text-gray-500">
+                    Packages
+                  </span>
+                </div>
+              </div>
+              <div class="min-h-[200px]" x-data="{ package: '' }">
+                <!-- Select Package -->
+                <div>
+                  <label for="package" class="block text-sm font-medium text-gray-700">
+                    Package
+                  </label>
+                  <div class="mt-1 mb-4">
+                    <!-- Valid: border-gray-300, Invalid: border-red-500 -->
+                    <select x-model="package" id="job" name="job"
+                      class="appearance-none block w-full px-3 py-2 border  rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#00B4BF] focus:border-[#00B4BF] sm:text-sm border-gray-300">
+                      <option value="">Choose</option>
+                      <option value="Mercury">Mercury</option>
+                      <option value="Mars">Mars</option>
+                      <option value="Venus">Venus</option>
+                      <option value="Uranus">Uranus</option>
+                      <option value="Jupiter">Jupiter</option>
+                      <option value="Custom">Custom</option>
+                    </select>
+                    <!-- Helper Text -->
+                    <span class="text-sm text-gray-500">You can see the available packages <a
+                        class="text-[#00B4BF] hover:text-[#063C40] transition underline" href="packages.html">here
+                      </a>,</span>
+                    <br>
+                    <span class="text-sm text-gray-500">For more information: +62 858 9377 7283 (Adrian), +62 877 7889
+                      9087 (Jordy)</span>
+                  </div>
+
+                  <div x-show="package === 'Custom'">
+                    <fieldset class="mb-4">
+                      <legend class="block text-sm font-medium text-gray-700">Opening</legend>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="opening" value="Logo on Poster"><span class="text-gray-900 ml-3">Logo on Poster</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="opening" value="Logo on Zoom Background"><span class="text-gray-900 ml-3">Logo on Zoom
+                        Background</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="opening" value="Ad libs by MC"><span class="text-gray-900 ml-3">Ad libs by MC</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="opening" value="1 Minute Video Ads"><span class="text-gray-900 ml-3">1 Minute Video
+                        Ads</span><br>
+                    </fieldset>
+                    <fieldset class="mb-4">
+                      <legend class="block text-sm font-medium text-gray-700">Webinar Series</legend>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="webinar-series" value="Logo on Poster"><span class="text-gray-900 ml-3">Logo on
+                        Poster</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="webinar-series" value="Logo on Zoom Background"><span class="text-gray-900 ml-3">Logo on
+                        Zoom
+                        Background</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="webinar-series" value="Ad libs by MC"><span class="text-gray-900 ml-3">Ad libs by
+                        MC</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="webinar-series" value="1 Minute Video Ads"><span class="text-gray-900 ml-3">1 Minute Video
+                        Ads</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="webinar-series" value="15 Minutes presentation"><span class="text-gray-900 ml-3">15
+                        Minutes presentation</span><br>
+                    </fieldset>
+                    <fieldset class="mb-4">
+                      <legend class="block text-sm font-medium text-gray-700">Product Exhibition</legend>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="product-exhibition" value="Basic (Website) for 3 days (5 Poster + 1 Minute Video)"><span
+                        class="text-gray-900 ml-3">Basic (Website) for 3 days (5 Poster + 1 Minute Video)</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="product-exhibition" value="Additional 1 Poster"><span
+                        class="text-gray-900 ml-3">Additional 1 Poster</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="product-exhibition" value="Additional 1 minute video"><span
+                        class="text-gray-900 ml-3">Additional 1 minute video</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="product-exhibition" value="Product Catalogue (1 Page)"><span
+                        class="text-gray-900 ml-3">Product Catalogue (1 Page)</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="product-exhibition" value="Live Chat"><span class="text-gray-900 ml-3">Live
+                        Chat</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="product-exhibition" value="Name Card"><span class="text-gray-900 ml-3">Name
+                        Card</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="product-exhibition" value="Doorprize for visitors"><span
+                        class="text-gray-900 ml-3">Doorprize for visitors</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="product-exhibition"
+                        value="Product exhibition for software house and health apps provider"><span
+                        class="text-gray-900 ml-3">Product exhibition for software house and health apps
+                        provider</span><br>
+                    </fieldset>
+                    <fieldset class="mb-4">
+                      <legend class="block text-sm font-medium text-gray-700">Consultation</legend>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="consultation" value="Basic"><span class="text-gray-900 ml-3">Basic</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="consultation" value="Addional 1 day"><span class="text-gray-900 ml-3">Addional 1
+                        day</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="consultation" value="Doorprize for visitors"><span class="text-gray-900 ml-3">Doorprize
+                        for visitors</span><br>
+                    </fieldset>
+                    <fieldset class="mb-4">
+                      <legend class="block text-sm font-medium text-gray-700">Closing</legend>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="Logo on Poster"><span class="text-gray-900 ml-3">Logo on Poster</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="Logo on Zoom Background"><span class="text-gray-900 ml-3">Logo on Zoom
+                        Background</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="Ad libs by MC"><span class="text-gray-900 ml-3">Ad libs by MC</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="1 Minute Video Ads"><span class="text-gray-900 ml-3">1 Minute Video
+                        Ads</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="Gifts"><span class="text-gray-900 ml-3">Gifts</span><br>
+                    </fieldset>
+                    <fieldset class="mb-4">
+                      <legend class="block text-sm font-medium text-gray-700">Website</legend>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="Logo on home page"><span class="text-gray-900 ml-3">Logo on home
+                        page</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="Running Text on main page"><span class="text-gray-900 ml-3">Running Text
+                        on main page</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="1 News page or display"><span class="text-gray-900 ml-3">1 News page or
+                        display</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="1 Minute Video Ads"><span class="text-gray-900 ml-3">1 Minute Video
+                        Ads</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="Logo on home page"><span class="text-gray-900 ml-3">Logo on home
+                        page</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="Running Text on main page"><span class="text-gray-900 ml-3">Running Text
+                        on main page</span><br>
+                      <input class="h-4 w-4 text-[#00B4BF] border-gray-300 focus:ring-[#00B4BF]" type="checkbox"
+                        name="closing" value="1 News page or display"><span class="text-gray-900 ml-3">1 News page or
+                        display</span><br>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Next button -->
+            <div class="flex space-x-6 mt-6">
+              <button type="button" @click="selectedPage = 'accountInfo'"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm font-medium text-gray-500 transition-all bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00B4BF]">
+                &larr; Back
+              </button>
+              <button type="submit"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm font-medium text-white transition-all bg-[#00B4BF] hover:bg-[#063C40] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00B4BF]">
+                Register
+              </button>
+            </div>
+          </div>
+
+          <!-- Packages -->
+
+          <!-- <div>
             <button type="submit"
               class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm font-medium text-white transition-all bg-[#00B4BF] hover:bg-[#063C40] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00B4BF]">
               Register
             </button>
-          </div>
+          </div> -->
         </form>
 
         <!-- Or -->
@@ -372,6 +569,9 @@
       </div>
     </div>
   </div>
+  <script>
+    const pages = ["accountInfo", "packages"];
+  </script>
 </body>
 
 </html>

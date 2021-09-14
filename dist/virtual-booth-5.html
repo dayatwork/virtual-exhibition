@@ -301,7 +301,8 @@
 </head>
 
 <body
-  x-data="{openVideoModal: false, openProductSlideOver: false, openCompanyProfileSlideOver: false, openBookConsultationModal: false, openPosterModal: false, openChatModal: false, selectedPoster: null, posters: posters }">
+  x-data="{openVideoModal: false, openProductSlideOver: false, openCompanyProfileSlideOver: false, openBookConsultationModal: false, openPosterModal: false, openChatModal: false, selectedPoster: null, posters: posters }"
+  class="2xl:overflow-y-scroll">
 
   <!-- Chat Button -->
   <div class="absolute right-4 lg:right-10 bottom-4 lg:bottom-10 z-10" style="backdrop-filter: (4px);">
@@ -356,7 +357,8 @@
           </a>
 
           <!-- TODO Seminar Hall -->
-          <a href="#" class="text-gray-900 hover:text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
+          <a href="seminar-room.html"
+            class="text-gray-900 hover:text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
             Seminar
           </a>
 
@@ -426,7 +428,7 @@
                   </a>
 
                   <!-- TODO Seminar hall -->
-                  <a href="#" class="text-gray-700 hover:text-gray-900 rounded-md px-3 font-medium">
+                  <a href="seminar-room.html" class="text-gray-700 hover:text-gray-900 rounded-md px-3 font-medium">
                     Seminar
                   </a>
 
