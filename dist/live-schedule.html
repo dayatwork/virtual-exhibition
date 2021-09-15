@@ -194,9 +194,7 @@
   </style>
 </head>
 
-<body
-  x-data="{openVideoModal: false, openProductSlideOver: false, openCompanyProfileSlideOver: false, openBookConsultationModal: false, openPosterModal: false, openChatModal: false, selectedPoster: null }"
-  class="2xl:overflow-y-scroll bg-gray-100">
+<body x-data="{ openChatModal: false }" class="2xl:overflow-y-scroll bg-gray-100">
 
   <!-- Chat Button -->
   <div class="absolute right-4 lg:right-6 bottom-4 lg:bottom-6 z-10" style="backdrop-filter: (4px);">
@@ -261,8 +259,13 @@
             Exhibitors
           </a>
 
-          <a href="consultation.html" class="text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
+          <a href="consultation.html"
+            class="text-gray-900 hover:text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
             Consultation
+          </a>
+
+          <a href="live-schedule.html" class="text-[#00B4BF] block rounded-md py-2 px-3 text-base font-medium">
+            Live Stage Schedule
           </a>
         </div>
         <div class="pt-4 pb-3 border-t border-white">
@@ -332,8 +335,12 @@
                   Exhibitors
                 </a>
 
-                <a href="consultation.html" class="text-[#00B4BF] rounded-md px-3 font-medium">
+                <a href="consultation.html" class="text-gray-700 hover:text-gray-900 rounded-md px-3 font-medium">
                   Consultation
+                </a>
+
+                <a href="live-schedule.html" class="text-[#00B4BF] rounded-md px-3 font-medium">
+                  Live Stage Schedule
                 </a>
 
                 <!-- <a href="#" class="text-gray-700 hover:text-gray-900 rounded-md px-3 text-sm font-medium">
@@ -752,10 +759,10 @@
           Live Stage
           Schedule
         </h2>
-        <button
+        <a href="https://zoom.us" target="_blank"
           class="px-6 py-2 inline-flex leading-5 font-semibold rounded-md bg-blue-500 hover:bg-blue-600 transition text-white">
           Join Zoom
-        </button>
+        </a>
       </div>
 
       <!-- Table -->
@@ -823,7 +830,7 @@
                         </template>
                         <template x-if="schedule.status === 'now-showing'">
                           <span x-text="schedule.status"
-                            class="px-2 py-1 sm:px-4 sm:py-1.5 inline-flex text-xs sm:text-sm leading-5 font-semibold rounded-md bg-yellow-100 text-yellow-800 uppercase">
+                            class="px-2 py-1 sm:px-4 sm:py-1.5 inline-flex text-xs sm:text-sm leading-5 font-semibold rounded-md bg-yellow-100 text-yellow-800 uppercase animate-pulse">
                           </span>
                         </template>
                         <template x-if="schedule.status === 'upcoming'">
