@@ -91,23 +91,22 @@
       justify-content: center;
       position: absolute;
       padding: 0.5% 1%;
-      border-radius: 6px;
       font-size: 2vw;
       font-weight: bold;
       left: 20.5%;
       width: 55.5%;
-      top: 18.5%
+      top: 19%
     }
 
     .filter-box-wrapper {
-      background: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.6);
       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       border: 1px solid rgba(255, 255, 255, 0.18);
       perspective: 1000px;
       position: absolute;
-      top: 79%;
+      top: 78.75%;
       left: 20.5%;
       width: 55.5%;
       height: 10.5%;
@@ -758,7 +757,7 @@
       <!-- End Chat Modal/ Dialog -->
     </main>
 
-    <div class="board-title">
+    <div class="board-title rounded-t-md">
       <div class="w-full h-full grid grid-cols-2">
         <div>Exhibitors & Sponsors</div>
         <form class="flex items-center">
@@ -887,7 +886,7 @@
       </div>
     </div>
 
-    <div class="filter-box-wrapper">
+    <div class="filter-box-wrapper rounded-b-md">
       <div x-data="filterExhibitorCategories()" class="filter-box grid grid-cols-4">
         <div class="filter-item"><input class="text-[#00B4BF]" type="checkbox" x-model="selectAll"
             x-on:change="handleSelectAll()"><label>All</label></div>
