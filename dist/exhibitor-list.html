@@ -23,8 +23,8 @@
 
     .swiper-pagination-bullet {
       border-radius: 100%;
-      width: 12px;
-      height: 12px;
+      width: 1vw;
+      height: 1vw;
       background-color: rgba(0, 0, 0, 0.8);
     }
 
@@ -99,12 +99,75 @@
       top: 18.5%
     }
 
+    .filter-box-wrapper {
+      background: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      perspective: 1000px;
+      position: absolute;
+      top: 79%;
+      left: 20.5%;
+      width: 55.5%;
+      height: 10.5%;
+      overflow: hidden;
+    }
+
+    .filter-box {
+      width: 100%;
+      height: 100%;
+      padding: 0 2%;
+
+      /* padding: 2%; */
+      /* animation: fullpulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; */
+    }
+
+    .filter-item {
+      font-size: 1vw;
+      display: flex;
+      align-items: center;
+    }
+
+    .filter-item input {
+      width: 1vw;
+      height: 1vw;
+      margin-right: 2%;
+      border-radius: 3px;
+    }
+
+    .search-exhibitor-input {
+      /* margin-bottom: 2%; */
+    }
+
+    .search-exhibitor-input-icon {
+      height: 1.1vw;
+    }
+
+    .search-exhibitor-input input {
+      width: 100%;
+      height: 100%;
+      /* padding: 2% 4% 2% 4$; */
+      padding: 1% 4% 1% 8%;
+      font-size: 50%;
+
+    }
+
+    .search-exhibitor-button {
+      padding: 1.5% 3%;
+    }
+
+    .search-exhibitor-button svg {
+      width: 1.1vw;
+      /* height: 10%; */
+    }
+
+
     .expandable-textarea {
       border: 1px solid #ccc;
       font-family: inherit;
       font-size: inherit;
       padding: 1px 6px;
-
       display: block;
       width: 100%;
       overflow: hidden;
@@ -696,7 +759,35 @@
     </main>
 
     <div class="board-title">
-      Exhibitors & Sponsors
+      <div class="w-full h-full grid grid-cols-2">
+        <div>Exhibitors & Sponsors</div>
+        <form class="flex items-center">
+          <div class="search-exhibitor-input w-full">
+            <label for="search-exhibitor" class="sr-only">Search Exhibitor</label>
+            <div class="relative">
+              <div style="padding: 2%;" class="hidden sm:flex absolute inset-y-0 items-center pointer-events-none">
+                <svg class="search-exhibitor-input-icon text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd" />
+                </svg>
+              </div>
+              <input id="search-exhibitor" name="search-exhibitor"
+                class="block w-full border border-gray-300 rounded-l-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-[#00B4BF] focus:border-[#00B4BF]"
+                placeholder="Search" type="search">
+            </div>
+          </div>
+          <button class="search-exhibitor-button bg-[#00B4BF] text-white rounded-r-md text-sm  hover:bg-opacity-80"><svg
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd" />
+            </svg><span class="sr-only">Search</span></button>
+          <div>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- ###### Board ######-->
@@ -788,16 +879,25 @@
                 </a>
               </div>
             </div>
-
           </div>
 
           <!-- If we need pagination -->
           <div class="block swiper-pagination text-left ml-3"></div>
-
         </div>
       </div>
     </div>
 
+    <div class="filter-box-wrapper">
+      <div x-data="filterExhibitorCategories()" class="filter-box grid grid-cols-4">
+        <div class="filter-item"><input class="text-[#00B4BF]" type="checkbox" x-model="selectAll"
+            x-on:change="handleSelectAll()"><label>All</label></div>
+
+        <template x-for="filter in filters" :key="filter.id">
+          <div class="filter-item"><input class="text-[#00B4BF]" type="checkbox" :value="filter.id"
+              x-model="filtersSelected" x-on:change="handleChange()"><label x-text="filter.name"></label></div>
+        </template>
+      </div>
+    </div>
 
   </div>
 
@@ -832,9 +932,78 @@
         el: '.swiper-scrollbar',
       },
     });</script>
+
   <script>
+    let filterExhibitorCategories = function () {
+      const filters = [
+        {
+          id: 'hospital-buildings',
+          name: "Hopital Buildings"
+        },
+        {
+          id: 'hospital-mechanics',
+          name: "Hopital Mechanics"
+        },
+        {
+          id: 'hospital-electric',
+          name: "Hopital Electric"
+        },
+        {
+          id: 'hospital-environtment',
+          name: "Hopital Environtment"
+        },
+        {
+          id: 'hospital-informatics',
+          name: "Hopital Informatics"
+        },
+        {
+          id: 'hospital-devices',
+          name: "Hopital Devices"
+        },
+        {
+          id: "covid-19-products",
+          name: "Covid-19 Products"
+        },
+      ]
 
+      const allFilter = filters.map(filter => filter.id).sort().join(',');
 
+      const getFilter = () => {
+        return new URLSearchParams(location.search)?.get('filter')?.split(',')?.sort()?.join(',') || '';
+      }
+
+      return {
+        selectAll: allFilter === getFilter(),
+        handleSelectAll() {
+          const self = this;
+          const params = new URLSearchParams(location.search);
+          if (self.selectAll) {
+            params.set('filter', allFilter);
+          } else {
+            params.delete('filter');
+          }
+          window.location.search = params.toString()
+        },
+        filtersSelected: new URLSearchParams(location.search).get('filter')?.split(',') || [],
+        filters,
+        handleChange() {
+          const self = this;
+          const params = new URLSearchParams(location.search)
+          if (getFilter() === allFilter) {
+            params.set('filter', allFilter);
+          }
+          if (self.filtersSelected.length) {
+            params.set('filter', self.filtersSelected.join(','));
+          } else {
+            params.delete('filter');
+          }
+          window.location.search = params.toString()
+        }
+      }
+    }
+  </script>
+
+  <script>
     const posters = [
       'assets/brosur1.jpg',
       'assets/brosur2.jpg',
